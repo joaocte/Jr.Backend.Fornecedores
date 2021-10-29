@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jr.Backend.Fornecedores.Domain\Jr.Backend.Fornecedores.Domain.csproj" />
+    <ProjectReference Include="..\Jr.Backend.Fornecedores.Infrastructure\Jr.Backend.Fornecedores.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

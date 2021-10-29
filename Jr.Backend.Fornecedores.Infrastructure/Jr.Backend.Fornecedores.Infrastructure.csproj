@@ -4,4 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Jr.Backend.Libs.Infrastructure.MongoDB" Version="1.0.0-alpha-02" />
+    <PackageReference Include="Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions" Version="1.0.0-alpha-02" />
+    <PackageReference Include="MongoDB.Bson" Version="2.13.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jr.Backend.Fornecedores.Domain\Jr.Backend.Fornecedores.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

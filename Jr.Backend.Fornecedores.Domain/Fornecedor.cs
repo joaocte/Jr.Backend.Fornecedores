@@ -21,8 +21,8 @@ namespace Jr.Backend.Fornecedores.Domain
             AceiteTermosDeUso aceiteTermosDeUso)
         {
             Celular = celular;
-            CpfCnpj = cnpj;
-            DataCadastro = DateTime.Now;
+            Cnpj = cnpj;
+            DataCadastro = DateTime.UtcNow;
             EmailContato = emailContato;
             InformacoesBancarias = informacoesBancarias;
             NomeRazaoSocial = nomeRazaoSocial;
@@ -38,7 +38,7 @@ namespace Jr.Backend.Fornecedores.Domain
         public Celular Celular { get; }
 
         public CNAE CNAE { get; }
-        public Cnpj CpfCnpj { get; }
+        public Cnpj Cnpj { get; }
         public DateTime DataCadastro { get; }
         public IEnumerable<EmailContato> EmailContato { get; }
         public IEnumerable<EmailFatura> EmailFatura { get; }
