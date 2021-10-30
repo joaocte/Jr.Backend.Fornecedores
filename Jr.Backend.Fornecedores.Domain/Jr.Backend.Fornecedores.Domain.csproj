@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jr.Backend.Libs.Domain.Abstractions" Version="1.0.0-alpha-02" />
+    <PackageReference Include="Jr.Backend.Libs.Domain.Abstractions" Version="1.0.0-alpha-03" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Querys\Reqiest\" />
+    <Folder Include="Querys\Response\" />
   </ItemGroup>
 
 </Project>
