@@ -33,8 +33,25 @@ namespace Jr.Backend.Fornecedores.Domain
             CNAE = cnae;
             NomeContato = nomeContato;
             AceiteTermosDeUso = aceiteTermosDeUso;
+            Id = Guid.NewGuid();
         }
 
+        public Fornecedor(
+            Celular celular,
+            Cnpj cnpj,
+            IEnumerable<EmailContato> emailContato,
+            IEnumerable<EmailFatura> emailFatura,
+            InformacoesBancarias informacoesBancarias,
+            NomeCompleto nomeRazaoSocial,
+            Telefone telefone,
+            CNAE cnae,
+            NomeCompleto nomeContato,
+            AceiteTermosDeUso aceiteTermosDeUso, DateTime dataCadastro) : this(celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeRazaoSocial, telefone, cnae, nomeContato, aceiteTermosDeUso)
+        {
+            DataCadastro = dataCadastro;
+        }
+
+        private Guid Id;
         public Celular Celular { get; }
 
         public CNAE CNAE { get; }
@@ -54,20 +71,5 @@ namespace Jr.Backend.Fornecedores.Domain
         public Telefone Telefone { get; }
 
         public AceiteTermosDeUso AceiteTermosDeUso { get; set; }
-
-        public void AdicionarEnderecoAoFornecedor(Endereco endereco)
-        {
-            Enderecos.Add(endereco);
-        }
-
-        public void InativarFornecedor()
-        {
-            Status = StatusCadastro.Inativo;
-        }
-
-        public void AprovarFornecedor()
-        {
-            Status = StatusCadastro.Aprovado;
-        }
     }
 }
