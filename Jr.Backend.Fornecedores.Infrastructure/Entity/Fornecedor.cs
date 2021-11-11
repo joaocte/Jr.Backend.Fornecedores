@@ -9,6 +9,9 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Entity
 {
     public class Fornecedor
     {
+        [BsonId]
+        public Guid Id { get; set; }
+
         public string Celular { get; set; }
 
         public string CNAE { get; set; }

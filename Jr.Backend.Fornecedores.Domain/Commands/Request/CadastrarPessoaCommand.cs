@@ -1,8 +1,9 @@
-﻿using Jr.Backend.Fornecedores.Domain.ValueObjects;
+﻿using Jr.Backend.Fornecedores.Domain.Commands.Reqiest;
+using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using MediatR;
 using System.Collections.Generic;
 
-namespace Jr.Backend.Fornecedores.Domain.Commands.Reqiest
+namespace Jr.Backend.Fornecedores.Domain.Commands.Request
 {
     public class CadastrarPessoaCommand : Fornecedor, IRequest<CadastrarPessoaCommandResponse>
     {

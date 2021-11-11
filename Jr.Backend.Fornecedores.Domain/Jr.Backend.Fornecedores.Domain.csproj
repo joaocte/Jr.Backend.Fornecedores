@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Querys\Reqiest\" />
+    <Folder Include="Querys\Request\" />
     <Folder Include="Querys\Response\" />
   </ItemGroup>
 
