@@ -3,11 +3,13 @@ using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Fornecedores.Domain
 {
     public class Fornecedor
     {
+        [JsonConstructor]
         public Fornecedor(
             Celular celular,
             Cnpj cnpj,
