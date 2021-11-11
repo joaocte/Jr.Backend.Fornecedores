@@ -24,7 +24,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
             this.notificationContext = notificationContext;
         }
 
-        public async Task<CadastrarPessoaCommandResponse> Execute(CadastrarPessoaCommand command)
+        public async Task<CadastrarFornecedorCommandResponse> Execute(CadastrarFornecedorCommand command)
         {
             var fornecedorDomain = mapper.Map<Fornecedor>(command);
 
@@ -33,7 +33,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
                 notificationContext.AddNotifications(fornecedorDomain.ValidationResult);
                 return default;
             }
-            var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj);
+            var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj.ToString());
 
             if (fornecedorJaCadastrado)
                 throw new AlreadyRegisteredException($"Fornecedor {fornecedorDomain.Cnpj} já Cadastrado");

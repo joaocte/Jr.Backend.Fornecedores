@@ -2,9 +2,9 @@
 
 namespace Jr.Backend.Fornecedores.Domain.Commands.Reqiest
 {
-    public class CadastrarPessoaCommandResponse
+    public class CadastrarFornecedorCommandResponse
     {
-        public CadastrarPessoaCommandResponse(Guid id)
+        public CadastrarFornecedorCommandResponse(Guid id)
         {
             Id = id;
         }

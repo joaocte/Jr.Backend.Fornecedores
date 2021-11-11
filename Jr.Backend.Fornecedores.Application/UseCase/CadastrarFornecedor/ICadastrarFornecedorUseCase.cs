@@ -7,6 +7,6 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
 {
     public interface ICadastrarFornecedorUseCase : IDisposable
     {
-        Task<CadastrarPessoaCommandResponse> Execute(CadastrarPessoaCommand command);
+        Task<CadastrarFornecedorCommandResponse> Execute(CadastrarFornecedorCommand command);
     }
 }

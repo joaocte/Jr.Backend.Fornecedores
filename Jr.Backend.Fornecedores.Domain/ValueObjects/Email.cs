@@ -4,29 +4,26 @@ using System.Collections.Generic;
 namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
     /// <inheritdoc/>
-    public class Cnpj : GenericValueObject
+    public abstract class Email : GenericValueObject
     {
-        private readonly string cnpj;
+        private readonly string email;
 
-        private Cnpj(string cnpj)
+        protected Email(string email)
         {
-            this.cnpj = cnpj;
+            this.email = email;
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return cnpj;
+            yield return email;
         }
 
         public override string ToString()
         {
-            return cnpj;
+            return email;
         }
 
         /// <inheritdoc/>
-        public static implicit operator Cnpj(string cpfCnpj) => new(cpfCnpj);
-
-        /// <inheritdoc/>
-        public static implicit operator string(Cnpj cpfCnpj) => cpfCnpj;
+        public static implicit operator string(Email email) => email.email;
     }
 }

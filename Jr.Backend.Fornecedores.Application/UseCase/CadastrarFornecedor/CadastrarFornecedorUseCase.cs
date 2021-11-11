@@ -18,12 +18,12 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
             this.mapper = mapper;
         }
 
-        public async Task<CadastrarPessoaCommandResponse> Execute(CadastrarPessoaCommand command)
+        public async Task<CadastrarFornecedorCommandResponse> Execute(CadastrarFornecedorCommand command)
         {
             var entityFornecedor = mapper.Map<Fornecedor>(command);
             await fornecedorRepository.AddAsync(entityFornecedor);
 
-            return new CadastrarPessoaCommandResponse(entityFornecedor.Id);
+            return new CadastrarFornecedorCommandResponse(entityFornecedor.Id);
         }
 
         protected virtual void Dispose(bool disposing)

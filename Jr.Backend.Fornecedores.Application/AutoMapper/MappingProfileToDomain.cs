@@ -14,7 +14,7 @@ namespace Jr.Backend.Pessoa.Application.AutoMapper
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoCobranca, EnderecoCobranca>();
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoComercial, EnderecoComercial>();
             CreateMap<Fornecedores.Infrastructure.Entity.Fornecedor, Fornecedor>();
-            CreateMap<CadastrarPessoaCommand, Fornecedor>();
+            CreateMap<CadastrarFornecedorCommand, Fornecedor>();
         }
     }
 }
