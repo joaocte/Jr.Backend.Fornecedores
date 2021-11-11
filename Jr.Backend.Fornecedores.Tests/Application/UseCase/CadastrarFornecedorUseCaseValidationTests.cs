@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using Jr.Backend.Fornecedores.Application.AutoMapper;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
 using Jr.Backend.Fornecedores.Domain.Commands.Reqiest;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Tests.TestObjects;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
+using Jr.Backend.Libs.Domain.Abstractions.Notifications;
 using Jr.Backend.Libs.Domain.Notifications;
-using Jr.Backend.Pessoa.Application.AutoMapper;
 using NSubstitute;
 using System;
 using Xunit;
@@ -18,7 +19,7 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         private readonly ICadastrarFornecedorUseCase cadastrarFornecedorUseCaseValidation;
         private readonly IFornecedorRepository fornecedorRepository;
         private readonly IMapper mapper;
-        private readonly NotificationContext notificationContext;
+        private readonly INotificationContext notificationContext;
 
         public CadastrarFornecedorUseCaseValidationTests()
         {
@@ -29,6 +30,7 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             {
                 mc.AddProfile(new MappingProfileToDomain());
                 mc.AddProfile(new MappingProfileToEntity());
+                mc.AddProfile(new MappingProfileToEnvent());
             });
             mapper = mappingConfig.CreateMapper();
             cadastrarFornecedorUseCaseValidation = new CadastrarFornecedorUseCaseValidation(cadastrarFornecedorUseCase,

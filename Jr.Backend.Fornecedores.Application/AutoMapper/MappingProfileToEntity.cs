@@ -3,7 +3,7 @@ using Jr.Backend.Fornecedores.Domain;
 using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
 
-namespace Jr.Backend.Pessoa.Application.AutoMapper
+namespace Jr.Backend.Fornecedores.Application.AutoMapper
 {
     public class MappingProfileToEntity : Profile
     {

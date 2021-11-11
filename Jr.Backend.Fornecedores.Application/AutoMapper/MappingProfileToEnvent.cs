@@ -1,20 +1,18 @@
 ﻿using AutoMapper;
-using Jr.Backend.Fornecedores.Domain;
-using Jr.Backend.Fornecedores.Domain.Commands.Request;
-using Jr.Backend.Fornecedores.Domain.ValueObjects;
-using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
+using Jr.Backend.Message.Events.Fornecedor.Comum;
+using Jr.Backend.Message.Events.Fornecedor.Comum.Endereco;
+using Jr.Backend.Message.Events.Fornecedor.Events;
 
 namespace Jr.Backend.Fornecedores.Application.AutoMapper
 {
-    public class MappingProfileToDomain : Profile
+    public class MappingProfileToEnvent : Profile
     {
-        public MappingProfileToDomain()
+        public MappingProfileToEnvent()
         {
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.InformacoesBancarias, InformacoesBancarias>();
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoCobranca, EnderecoCobranca>();
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoComercial, EnderecoComercial>();
-            CreateMap<Fornecedores.Infrastructure.Entity.Fornecedor, Fornecedor>();
-            CreateMap<CadastrarFornecedorCommand, Fornecedor>();
+            CreateMap<Fornecedores.Infrastructure.Entity.Fornecedor, FornecedorCadastradoEvent>();
         }
     }
 }
