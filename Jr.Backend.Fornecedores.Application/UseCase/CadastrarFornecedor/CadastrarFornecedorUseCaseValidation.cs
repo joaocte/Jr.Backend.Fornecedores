@@ -4,6 +4,7 @@ using Jr.Backend.Fornecedores.Domain.Commands.Reqiest;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
+using Jr.Backend.Libs.Domain.Notifications;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
@@ -13,11 +14,25 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
         private readonly ICadastrarFornecedorUseCase cadastrarFornecedorUseCase;
         private readonly IFornecedorRepository fornecedorRepository;
         private readonly IMapper mapper;
+        private readonly NotificationContext notificationContext;
+
+        public CadastrarFornecedorUseCaseValidation(ICadastrarFornecedorUseCase cadastrarFornecedorUseCase, IFornecedorRepository fornecedorRepository, IMapper mapper, NotificationContext notificationContext)
+        {
+            this.cadastrarFornecedorUseCase = cadastrarFornecedorUseCase;
+            this.fornecedorRepository = fornecedorRepository;
+            this.mapper = mapper;
+            this.notificationContext = notificationContext;
+        }
 
         public async Task<CadastrarPessoaCommandResponse> Execute(CadastrarPessoaCommand command)
         {
             var fornecedorDomain = mapper.Map<Fornecedor>(command);
 
+            if (fornecedorDomain.Invalid)
+            {
+                notificationContext.AddNotifications(fornecedorDomain.ValidationResult);
+                return default;
+            }
             var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj);
 
             if (fornecedorJaCadastrado)

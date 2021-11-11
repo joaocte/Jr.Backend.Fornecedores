@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Jr.Backend.Fornecedores.Domain;
+using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
 
@@ -13,6 +14,7 @@ namespace Jr.Backend.Pessoa.Application.AutoMapper
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoCobranca, EnderecoCobranca>();
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoComercial, EnderecoComercial>();
             CreateMap<Fornecedores.Infrastructure.Entity.Fornecedor, Fornecedor>();
+            CreateMap<CadastrarPessoaCommand, Fornecedor>();
         }
     }
 }

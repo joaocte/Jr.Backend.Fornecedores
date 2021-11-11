@@ -1,13 +1,15 @@
-﻿using Jr.Backend.Fornecedores.Domain.ValueObjects;
+﻿using Jr.Backend.Fornecedores.Domain.Validations;
+using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
+using Jr.Backend.Libs.Domain.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Fornecedores.Domain
 {
-    public class Fornecedor
+    public class Fornecedor : Entity
     {
         [JsonConstructor]
         public Fornecedor(
@@ -36,9 +38,12 @@ namespace Jr.Backend.Fornecedores.Domain
             NomeContato = nomeContato;
             AceiteTermosDeUso = aceiteTermosDeUso;
             Id = Guid.NewGuid();
+
+            Validate(this, new FornecedorValidation());
         }
 
         public Fornecedor(
+            Guid id,
             Celular celular,
             Cnpj cnpj,
             IEnumerable<EmailContato> emailContato,
@@ -50,10 +55,10 @@ namespace Jr.Backend.Fornecedores.Domain
             NomeCompleto nomeContato,
             AceiteTermosDeUso aceiteTermosDeUso, DateTime dataCadastro) : this(celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeRazaoSocial, telefone, cnae, nomeContato, aceiteTermosDeUso)
         {
+            Id = id;
             DataCadastro = dataCadastro;
         }
 
-        private Guid Id;
         public Celular Celular { get; }
 
         public CNAE CNAE { get; }

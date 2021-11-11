@@ -28,7 +28,9 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
                 .Must(ValorDeveSerTrue)
                 .WithMessage("Deve-se aceitar os termos de Uso");
 
-            RuleFor(p => p.DataCadastro).NotNull().NotEmpty()
+            RuleFor(p => p.DataCadastro)
+                .NotNull()
+                .NotEmpty()
                 .WithMessage("Data de cadastrado inválida");
         }
 
