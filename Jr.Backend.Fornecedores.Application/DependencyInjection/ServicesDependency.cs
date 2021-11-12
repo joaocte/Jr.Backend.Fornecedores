@@ -10,7 +10,7 @@ namespace Jr.Backend.Fornecedores.Application.DependencyInjection
 {
     public static class ServicesDependency
     {
-        public static void AddServiceDependencyInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static void AddServiceDependencyApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ICadastrarFornecedorUseCase, CadastrarFornecedorUseCase>();
             services.Decorate<ICadastrarFornecedorUseCase, CadastrarFornecedorUseCaseValidation>();

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>4</WarningLevel>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ApiVersioning.xml</DocumentationFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.AspNetCore" Version="10.3.4" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
+		<PackageReference Include="Jr.Backend.Libs.Framework" Version="1.0.0-alpha-09" />
+		<PackageReference Include="MediatR" Version="9.0.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Jr.Backend.Fornecedores.Application\Jr.Backend.Fornecedores.Application.csproj" />
+	  <ProjectReference Include="..\Jr.Backend.Fornecedores.Infrastructure\Jr.Backend.Fornecedores.Infrastructure.csproj" />
+	</ItemGroup>
+
+	
+</Project>

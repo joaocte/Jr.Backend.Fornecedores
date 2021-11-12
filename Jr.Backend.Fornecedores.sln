@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jr.Backend.Fornecedores.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jr.Backend.Fornecedores.Infrastructure", "Jr.Backend.Fornecedores.Infrastructure\Jr.Backend.Fornecedores.Infrastructure.csproj", "{7FA4154F-DEE2-4218-B61E-D71F3377060B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jr.Backend.Fornecedores.Tests", "Jr.Backend.Fornecedores.Tests\Jr.Backend.Fornecedores.Tests.csproj", "{62AFCACE-4DFD-460E-8C02-C29E6757D57A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jr.Backend.Fornecedores.Tests", "Jr.Backend.Fornecedores.Tests\Jr.Backend.Fornecedores.Tests.csproj", "{62AFCACE-4DFD-460E-8C02-C29E6757D57A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jr.Backend.Fornecedor.Api", "Jr.Backend.Fornecedor.Api\Jr.Backend.Fornecedor.Api.csproj", "{F19761BC-4D3D-4636-BAF5-2C955E4296BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{62AFCACE-4DFD-460E-8C02-C29E6757D57A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62AFCACE-4DFD-460E-8C02-C29E6757D57A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62AFCACE-4DFD-460E-8C02-C29E6757D57A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19761BC-4D3D-4636-BAF5-2C955E4296BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19761BC-4D3D-4636-BAF5-2C955E4296BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19761BC-4D3D-4636-BAF5-2C955E4296BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19761BC-4D3D-4636-BAF5-2C955E4296BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
