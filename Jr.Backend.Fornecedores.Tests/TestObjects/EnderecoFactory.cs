@@ -1,4 +1,4 @@
-﻿using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
+﻿using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using System.Collections.Generic;
 
 namespace Jr.Backend.Fornecedores.Tests.TestObjects
@@ -7,7 +7,7 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
     {
         public static Endereco DeveInstanciarUmEndereco()
         {
-            return new EnderecoCobranca("cep", "logradouro", "numero", "Complemento", "Bairro", "Cidade", "Estado");
+            return new Endereco("bairro", "cep", "cidade", "complemento", "estado", "logradouro", "numero");
         }
 
         public static IEnumerable<Endereco> DeveInstanciarUmaListaDeEnderecos(int quantidade)

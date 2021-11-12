@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
+using Jr.Backend.Fornecedores.Domain.ValueObjects;
 
 namespace Jr.Backend.Fornecedores.Domain.Validations
 {

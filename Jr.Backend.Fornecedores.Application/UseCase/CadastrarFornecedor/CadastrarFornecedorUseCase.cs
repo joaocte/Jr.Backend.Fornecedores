@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Jr.Backend.Fornecedores.Domain.Commands.Reqiest;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
+using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Entity;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;

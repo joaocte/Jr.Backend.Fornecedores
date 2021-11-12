@@ -1,6 +1,6 @@
 ﻿using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
-using Jr.Backend.Fornecedores.Domain.Commands.Reqiest;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
+using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

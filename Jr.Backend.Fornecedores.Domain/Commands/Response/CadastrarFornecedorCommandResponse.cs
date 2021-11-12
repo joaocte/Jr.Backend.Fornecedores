@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Jr.Backend.Fornecedores.Domain.Commands.Reqiest
+namespace Jr.Backend.Fornecedores.Domain.Commands.Response
 {
     public class CadastrarFornecedorCommandResponse
     {

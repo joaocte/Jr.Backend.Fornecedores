@@ -1,6 +1,6 @@
-﻿namespace Jr.Backend.Fornecedores.Infrastructure.Entity.Comum.Endereco
+﻿namespace Jr.Backend.Fornecedores.Infrastructure.Entity.Comum
 {
-    public abstract class Endereco
+    public class Endereco
     {
         public string Bairro { get; set; }
         public string Cep { get; set; }

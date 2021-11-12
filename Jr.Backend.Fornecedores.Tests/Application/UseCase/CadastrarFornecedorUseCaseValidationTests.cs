@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Jr.Backend.Fornecedores.Application.AutoMapper;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
-using Jr.Backend.Fornecedores.Domain.Commands.Reqiest;
+using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Tests.TestObjects;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;

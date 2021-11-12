@@ -1,6 +1,5 @@
 ﻿using Jr.Backend.Fornecedores.Domain.Validations;
 using Jr.Backend.Fornecedores.Domain.ValueObjects;
-using Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
 using Jr.Backend.Libs.Domain.Abstractions;
 using System;

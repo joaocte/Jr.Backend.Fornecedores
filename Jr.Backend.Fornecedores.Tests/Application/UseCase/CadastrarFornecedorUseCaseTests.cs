@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Jr.Backend.Fornecedores.Application.AutoMapper;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
-using Jr.Backend.Fornecedores.Domain.Commands.Reqiest;
+using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Tests.TestObjects;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
@@ -41,7 +41,8 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         [Fact]
         public void QuandoReceberUmaRequisicaoValidaEntaoCadastrarOFornecedor()
         {
-            var retorno = cadastrarFornecedorUseCase.ExecuteAsync(CommandFactory.GerarCadastrarFornecedorCommandValido()).Result;
+            var command = CommandFactory.GerarCadastrarFornecedorCommandValido();
+            var retorno = cadastrarFornecedorUseCase.ExecuteAsync(command).Result;
             bus.Received(1).Publish(Arg.Any<FornecedorCadastradoEvent>());
             fornecedorRepository.Received(1).AddAsync(Arg.Any<Infrastructure.Entity.Fornecedor>());
             unitOfWork.Received(1).CommitAsync();

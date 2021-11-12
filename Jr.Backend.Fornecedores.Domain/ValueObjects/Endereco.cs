@@ -1,25 +1,19 @@
-﻿namespace Jr.Backend.Fornecedores.Domain.ValueObjects.Endereco
+﻿namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
     /// <summary>
     /// View Object Endereco
     /// </summary>
-    public abstract class Endereco
+    public class Endereco
     {
-        /// <inheritdoc/>
-        public Endereco(Cep cep, Logradouro logradouro,
-            Numero numero,
-            Complemento complemento,
-            Bairro bairro,
-            Cidade cidade,
-            Estado estado)
+        public Endereco(Bairro bairro, Cep cep, Cidade cidade, Complemento complemento, Estado estado, Logradouro logradouro, Numero numero)
         {
+            Bairro = bairro;
             Cep = cep;
+            Cidade = cidade;
+            Complemento = complemento;
+            Estado = estado;
             Logradouro = logradouro;
             Numero = numero;
-            Complemento = complemento;
-            Bairro = bairro;
-            Cidade = cidade;
-            Estado = estado;
         }
 
         /// <summary>
