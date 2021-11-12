@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using Jr.Backend.Message.Events.Fornecedor.Comum;
-using Jr.Backend.Message.Events.Fornecedor.Comum.Endereco;
+using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Message.Events.Fornecedor.Events;
+using Jr.Backend.Message.Share.Fornecedor;
+using Jr.Backend.Message.Share.Fornecedor.Endereco;
 
 namespace Jr.Backend.Fornecedores.Application.AutoMapper
 {
@@ -12,7 +13,10 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.InformacoesBancarias, InformacoesBancarias>();
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoCobranca, EnderecoCobranca>();
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoComercial, EnderecoComercial>();
-            CreateMap<Fornecedores.Infrastructure.Entity.Fornecedor, FornecedorCadastradoEvent>();
+            CreateMap<Infrastructure.Entity.Fornecedor, FornecedorCadastradoEvent>();
+            CreateMap<Infrastructure.Entity.Fornecedor, FornecedorAtulizadoEvent>();
+            CreateMap<Infrastructure.Entity.Fornecedor, FornecedorDeletadoEvent>();
+            CreateMap<AtualizarFornecedorCommand, FornecedorAtulizadoEvent>();
         }
     }
 }

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Jr.Backend.Fornecedor.Api\Jr.Backend.Fornecedor.Api.csproj" />
     <ProjectReference Include="..\Jr.Backend.Fornecedores.Application\Jr.Backend.Fornecedores.Application.csproj" />
     <ProjectReference Include="..\Jr.Backend.Fornecedores.Domain\Jr.Backend.Fornecedores.Domain.csproj" />
     <ProjectReference Include="..\Jr.Backend.Fornecedores.Infrastructure\Jr.Backend.Fornecedores.Infrastructure.csproj" />

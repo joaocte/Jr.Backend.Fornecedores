@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Jr.Backend.Fornecedores.Application.AutoMapper;
+using Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
 using MassTransit;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Reflection;
 
 namespace Jr.Backend.Fornecedores.Application.DependencyInjection
 {
@@ -15,10 +18,16 @@ namespace Jr.Backend.Fornecedores.Application.DependencyInjection
             services.AddScoped<ICadastrarFornecedorUseCase, CadastrarFornecedorUseCase>();
             services.Decorate<ICadastrarFornecedorUseCase, CadastrarFornecedorUseCaseValidation>();
 
+            services.AddScoped<IAtualizarFornecedorUseCase, AtualizarFornecedorUseCase>();
+            services.Decorate<IAtualizarFornecedorUseCase, AtualizarFornecedorValidationUseCase>();
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfileToDomain());
                 mc.AddProfile(new MappingProfileToEntity());
+                mc.AddProfile(new MappingProfileToEnvent());
+                mc.AddProfile(new MappingProfileToResponse());
                 mc.AddProfile(new MappingProfileToEnvent());
             });
 

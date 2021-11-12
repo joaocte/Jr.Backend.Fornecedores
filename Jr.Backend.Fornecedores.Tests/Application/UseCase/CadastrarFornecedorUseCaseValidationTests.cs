@@ -43,11 +43,11 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             var id = Guid.NewGuid();
             var command = CommandFactory.GerarCadastrarFornecedorCommandValido();
 
-            cadastrarFornecedorUseCase.Execute(command).Returns(new CadastrarFornecedorCommandResponse(id));
+            cadastrarFornecedorUseCase.ExecuteAsync(command).Returns(new CadastrarFornecedorCommandResponse(id));
             fornecedorRepository.ExistsAsync(Arg.Any<String>()).ReturnsForAnyArgs(false);
-            var retorno = cadastrarFornecedorUseCaseValidation.Execute(command).Result;
+            var retorno = cadastrarFornecedorUseCaseValidation.ExecuteAsync(command).Result;
 
-            cadastrarFornecedorUseCase.Received(1).Execute(command);
+            cadastrarFornecedorUseCase.Received(1).ExecuteAsync(command);
             fornecedorRepository.Received(1).ExistsAsync(Arg.Any<string>());
             Assert.IsType<CadastrarFornecedorCommandResponse>(retorno);
         }
@@ -58,12 +58,12 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             var id = Guid.NewGuid();
             var command = CommandFactory.GerarCadastrarFornecedorCommandValido();
 
-            cadastrarFornecedorUseCase.Execute(command).Returns(new CadastrarFornecedorCommandResponse(id));
+            cadastrarFornecedorUseCase.ExecuteAsync(command).Returns(new CadastrarFornecedorCommandResponse(id));
             fornecedorRepository.ExistsAsync(command.Cnpj.ToString()).Returns(true);
             Assert.ThrowsAsync<AlreadyRegisteredException>(() =>
-                 cadastrarFornecedorUseCaseValidation.Execute(command));
+                 cadastrarFornecedorUseCaseValidation.ExecuteAsync(command));
 
-            cadastrarFornecedorUseCase.DidNotReceive().Execute(command);
+            cadastrarFornecedorUseCase.DidNotReceive().ExecuteAsync(command);
             fornecedorRepository.Received(1).ExistsAsync(Arg.Any<string>());
         }
 
@@ -73,9 +73,9 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             var id = Guid.NewGuid();
             var command = CommandFactory.GerarCadastrarFornecedorCommandInValido();
 
-            var retorno = cadastrarFornecedorUseCaseValidation.Execute(command).Result;
+            var retorno = cadastrarFornecedorUseCaseValidation.ExecuteAsync(command).Result;
 
-            cadastrarFornecedorUseCase.DidNotReceive().Execute(command);
+            cadastrarFornecedorUseCase.DidNotReceive().ExecuteAsync(command);
             fornecedorRepository.DidNotReceive().ExistsAsync(Arg.Any<string>());
             Assert.Null(retorno);
             Assert.NotNull(notificationContext);

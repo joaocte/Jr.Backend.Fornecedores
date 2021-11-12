@@ -15,6 +15,7 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco.EnderecoComercial, EnderecoComercial>();
             CreateMap<Fornecedores.Infrastructure.Entity.Fornecedor, Fornecedor>();
             CreateMap<CadastrarFornecedorCommand, Fornecedor>();
+            CreateMap<AtualizarFornecedorCommand, Fornecedor>();
         }
     }
 }

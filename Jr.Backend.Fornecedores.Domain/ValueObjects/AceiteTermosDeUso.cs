@@ -9,7 +9,7 @@ namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 
         private AceiteTermosDeUso(bool aceiteTermosUso)
         {
-            this.aceiteTermo = aceiteTermosUso;
+            aceiteTermo = aceiteTermosUso;
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
