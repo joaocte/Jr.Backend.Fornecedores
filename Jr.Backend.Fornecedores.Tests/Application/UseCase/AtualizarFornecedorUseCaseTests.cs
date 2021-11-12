@@ -46,7 +46,7 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
 
             var response = atualizarFornecedorUseCase.ExecuteAsync(command).Result;
 
-            bus.Received(1).Publish(Arg.Any<FornecedorAtulizadoEvent>());
+            bus.Received(1).Publish(Arg.Any<FornecedorAtualizadoEvent>());
             Assert.NotNull(response);
             Assert.Equal(id, response.Id);
             Assert.Equal(dataCadastro, response.DataCadastro);

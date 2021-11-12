@@ -35,7 +35,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
 
             await iUnitOfWork.CommitAsync();
 
-            var @event = mapper.Map<FornecedorAtulizadoEvent>(command);
+            var @event = mapper.Map<FornecedorAtualizadoEvent>(fornecedor);
 
             await bus.Publish(@event);
 
