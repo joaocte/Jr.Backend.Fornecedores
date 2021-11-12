@@ -25,7 +25,8 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
             this.notificationContext = notificationContext;
         }
 
-        public async Task<CadastrarFornecedorCommandResponse> ExecuteAsync(CadastrarFornecedorCommand command, CancellationToken cancellationToken = default)
+        public async Task<CadastrarFornecedorCommandResponse> ExecuteAsync(CadastrarFornecedorCommand command,
+            CancellationToken cancellationToken = default)
         {
             var fornecedorDomain = mapper.Map<Fornecedor>(command);
 
@@ -34,7 +35,9 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
                 notificationContext.AddNotifications(fornecedorDomain.ValidationResult);
                 return default;
             }
-            var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj.ToString(), cancellationToken);
+
+            var fornecedorJaCadastrado =
+                await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj.ToString(), cancellationToken);
 
             if (fornecedorJaCadastrado)
                 throw new AlreadyRegisteredException($"Fornecedor {fornecedorDomain.Cnpj} já Cadastrado");

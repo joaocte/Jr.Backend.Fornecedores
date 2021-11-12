@@ -9,6 +9,11 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Entity
 {
     public class Fornecedor
     {
+        public Fornecedor()
+        {
+            Id = Guid.NewGuid();
+        }
+
         [BsonId]
         public Guid Id { get; set; }
 
@@ -20,7 +25,7 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Entity
         public IEnumerable<string> EmailContato { get; set; }
         public IEnumerable<string> EmailFatura { get; set; }
 
-        public List<string> Enderecos { get; set; }
+        public List<Endereco> Enderecos { get; set; }
         public InformacoesBancarias InformacoesBancarias { get; set; }
 
         public string NomeContato { get; set; }

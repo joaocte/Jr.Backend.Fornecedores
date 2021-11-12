@@ -11,6 +11,11 @@ namespace Jr.Backend.Fornecedores.Application.Handlers
     {
         private readonly ICadastrarFornecedorUseCase cadastrarFornecedorUseCase;
 
+        public CadastrarFornecedorHandler(ICadastrarFornecedorUseCase cadastrarFornecedorUseCase)
+        {
+            this.cadastrarFornecedorUseCase = cadastrarFornecedorUseCase;
+        }
+
         public async Task<CadastrarFornecedorCommandResponse> Handle(CadastrarFornecedorCommand request, CancellationToken cancellationToken)
         {
             return await cadastrarFornecedorUseCase.ExecuteAsync(request, cancellationToken);

@@ -22,6 +22,7 @@ namespace Jr.Backend.Fornecedores.Application.DependencyInjection
             services.Decorate<IAtualizarFornecedorUseCase, AtualizarFornecedorValidationUseCase>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfileToDomain());
@@ -32,20 +33,25 @@ namespace Jr.Backend.Fornecedores.Application.DependencyInjection
             });
 
             IMapper mapper = mapperConfig.CreateMapper();
+
             services.AddSingleton(mapper);
 
             services.AddMassTransit(x =>
             {
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
                     {
-                        config.Host(new Uri(configuration["RabbitSetting:UriBase"]), h =>
+                        var uri = configuration["RabbitSetting:UriBase"];
+                        var user = configuration["RabbitSetting:User"];
+                        var password = configuration["RabbitSetting:Password"];
+                        config.Host(new Uri(uri), h =>
                         {
-                            h.Username(configuration["RabbitSetting:User"]);
-                            h.Password(configuration["RabbitSetting:Password"]);
+                            h.Username(user);
+                            h.Password(password);
                         });
                     }
                 ));
             });
+
             services.AddMassTransitHostedService();
         }
     }

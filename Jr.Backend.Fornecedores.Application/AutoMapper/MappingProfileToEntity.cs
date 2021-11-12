@@ -13,9 +13,10 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
             CreateMap<InformacoesBancarias, Infrastructure.Entity.Comum.InformacoesBancarias>();
             CreateMap<Endereco, Infrastructure.Entity.Comum.Endereco>();
             CreateMap<Fornecedor, Infrastructure.Entity.Fornecedor>();
-            CreateMap<AtualizarFornecedorCommand, Infrastructure.Entity.Fornecedor>();
-            CreateMap<FornecedorCommandRequest, Infrastructure.Entity.Fornecedor>();
             CreateMap<InformacoesBancariasRequest, Infrastructure.Entity.Comum.InformacoesBancarias>();
+            CreateMap<EnderecoRequest, Infrastructure.Entity.Comum.Endereco>();
+            CreateMap<FornecedorCommandRequest, Infrastructure.Entity.Fornecedor>();
+            CreateMap<AtualizarFornecedorCommand, Infrastructure.Entity.Fornecedor>();
         }
     }
 }

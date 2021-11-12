@@ -12,12 +12,11 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
         {
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.InformacoesBancarias, InformacoesBancarias>();
             CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco, EnderecoCobranca>();
+            CreateMap<InformacoesBancariasRequest, InformacoesBancarias>();
+            CreateMap<FornecedorCommandRequest, FornecedorDeletadoEvent>();
             CreateMap<Infrastructure.Entity.Fornecedor, FornecedorCadastradoEvent>();
             CreateMap<Infrastructure.Entity.Fornecedor, FornecedorAtualizadoEvent>();
             CreateMap<Infrastructure.Entity.Fornecedor, FornecedorDeletadoEvent>();
-            CreateMap<FornecedorCommandRequest, FornecedorDeletadoEvent>();
-
-            CreateMap<InformacoesBancariasRequest, InformacoesBancarias>();
         }
     }
 }
