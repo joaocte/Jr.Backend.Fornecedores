@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jr.Backend.Libs.Domain" Version="1.0.0-alpha-10" />
-    <PackageReference Include="Jr.Backend.Libs.Domain.Abstractions" Version="1.0.0-alpha-10" />
+    <PackageReference Include="Jr.Backend.Libs.Domain" Version="1.0.0-alpha-11" />
+    <PackageReference Include="Jr.Backend.Libs.Domain.Abstractions" Version="1.0.0-alpha-11" />
+    <PackageReference Include="Jr.Backend.Libs.Extensions" Version="1.0.0-alpha-11" />
     <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 

@@ -9,17 +9,13 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Entity
 {
     public class Fornecedor
     {
-        public Fornecedor()
-        {
-            Id = Guid.NewGuid();
-        }
-
         [BsonId]
+        [BsonRepresentation(BsonType.String)]
         public Guid Id { get; set; }
 
         public string Celular { get; set; }
 
-        public string CNAE { get; set; }
+        public string Cnae { get; set; }
         public string Cnpj { get; set; }
         public DateTime DataCadastro { get; set; }
         public IEnumerable<string> EmailContato { get; set; }

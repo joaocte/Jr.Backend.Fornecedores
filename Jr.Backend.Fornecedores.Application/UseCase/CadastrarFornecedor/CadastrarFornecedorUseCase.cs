@@ -29,9 +29,11 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
         public async Task<CadastrarFornecedorCommandResponse> ExecuteAsync(CadastrarFornecedorCommand command, CancellationToken cancellationToken = default)
         {
             var entityFornecedor = mapper.Map<Fornecedor>(command);
-            await fornecedorRepository.AddAsync(entityFornecedor, cancellationToken);
 
-            await unitOfWork.CommitAsync();
+            var taskInsert = fornecedorRepository.AddAsync(entityFornecedor, cancellationToken);
+            var taskCommit = unitOfWork.CommitAsync();
+
+            await Task.WhenAll(taskInsert, taskCommit);
             var @event = mapper.Map<FornecedorCadastradoEvent>(entityFornecedor);
 
             await bus.Publish(@event, cancellationToken);

@@ -37,7 +37,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
             }
 
             var fornecedorJaCadastrado =
-                await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj.ToString(), cancellationToken);
+                await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj, cancellationToken);
 
             if (fornecedorJaCadastrado)
                 throw new AlreadyRegisteredException($"Fornecedor {fornecedorDomain.Cnpj} já Cadastrado");

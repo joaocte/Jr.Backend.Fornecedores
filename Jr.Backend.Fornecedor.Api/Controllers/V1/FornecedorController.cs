@@ -16,11 +16,10 @@ namespace Jr.Backend.Fornecedor.Api.Controllers.V1
     [ApiVersion("1.0")]
     public class FornecedorController : ControllerBase
     {
-        // GET api/<PessoaController>/5
-        [HttpGet("{id}")]
-        public async Task<ObterFornecedorPorIdResponse> Get([FromServices] IMediator mediator, Guid id)
+        [HttpGet]
+        public async Task<ObterFornecedorResponse> Get([FromServices] IMediator mediator, [FromQuery] ObterFornecedorQuery query)
         {
-            return await mediator.Send(new ObterFornecedorPorIdQuery(id));
+            return await mediator.Send(query);
         }
 
         // POST api/<PessoaController>

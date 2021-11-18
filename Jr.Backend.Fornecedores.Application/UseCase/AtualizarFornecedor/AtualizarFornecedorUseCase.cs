@@ -31,13 +31,15 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
         {
             Fornecedor fornecedor = mapper.Map<Fornecedor>(command);
 
-            await fornecedorRepository.UpdateAsync(fornecedor, cancellationToken);
+            var taskUpdate = fornecedorRepository.UpdateAsync(fornecedor, cancellationToken);
 
-            await iUnitOfWork.CommitAsync();
+            var taksCommit = iUnitOfWork.CommitAsync();
+
+            await Task.WhenAll(taskUpdate, taksCommit);
 
             var @event = mapper.Map<FornecedorAtualizadoEvent>(fornecedor);
 
-            await bus.Publish(@event);
+            await bus.Publish(@event, cancellationToken);
 
             return mapper.Map<AtualizarFornecedorCommandResponse>(fornecedor);
         }

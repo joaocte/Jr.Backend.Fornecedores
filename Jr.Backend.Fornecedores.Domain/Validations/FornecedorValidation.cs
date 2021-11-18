@@ -17,10 +17,10 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
                 .CnpjValido()
                 .WithMessage("Cnpj deve ser informado ou é Inválido");
 
-            RuleFor(p => p.CNAE)
+            RuleFor(p => p.Cnae)
                 .NotNull()
                 .NotEmpty()
-                .WithMessage("CNAE deve ser informado");
+                .WithMessage("Cnae deve ser informado");
 
             RuleFor(p => p.AceiteTermosDeUso)
                 .NotNull()
@@ -48,7 +48,7 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
 
         private bool ValorDeveSerTrue(bool arg)
         {
-            return arg == true;
+            return arg;
         }
     }
 }

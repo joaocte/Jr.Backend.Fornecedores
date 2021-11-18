@@ -30,7 +30,7 @@ namespace Jr.Backend.Fornecedor.Api.Swagger
 
         private OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
         {
-            var info = new OpenApiInfo()
+            var info = new OpenApiInfo
             {
                 Title = "Jr.Backend.Fornecedor",
                 Version = description.ApiVersion.ToString()

@@ -14,7 +14,7 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
                 EmailFactory.DeveInstanciarUmaListaEmailContato(),
                 EmailFactory.DeveInstanciarUmaListaEmailFatura(),
                 new InformacoesBancarias("banco", "agencia", "conta", TipoConta.ContaCorrente), "RazaoSocial",
-                "Telefone", "CNAE", "NomeContato", true);
+                "Telefone", "Cnae", "NomeContato", true);
         }
 
         public static Fornecedores.Domain.Fornecedor DeveInstanciarUmNovoFornecedorInValido()
@@ -30,7 +30,7 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
             return new Fornecedores.Domain.Fornecedor(id, "celular", "05570796000131", EmailFactory.DeveInstanciarUmaListaEmailContato(),
                 EmailFactory.DeveInstanciarUmaListaEmailFatura(),
                 new InformacoesBancarias("banco", "agencia", "conta", TipoConta.ContaCorrente), "RazaoSocial",
-                "Telefone", "CNAE", "NomeContato", true, dataCadastro);
+                "Telefone", "Cnae", "NomeContato", true, dataCadastro);
         }
     }
 }

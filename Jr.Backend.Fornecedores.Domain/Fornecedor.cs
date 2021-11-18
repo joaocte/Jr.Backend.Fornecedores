@@ -33,7 +33,7 @@ namespace Jr.Backend.Fornecedores.Domain
             EmailFatura = emailFatura;
             Enderecos = new List<Endereco>();
             Status = StatusCadastro.EmAberto;
-            CNAE = cnae;
+            Cnae = cnae;
             NomeContato = nomeContato;
             AceiteTermosDeUso = aceiteTermosDeUso;
             Id = Guid.NewGuid();
@@ -60,7 +60,7 @@ namespace Jr.Backend.Fornecedores.Domain
 
         public string Celular { get; }
 
-        public string CNAE { get; }
+        public string Cnae { get; }
         public string Cnpj { get; }
         public DateTime DataCadastro { get; }
         public IEnumerable<string> EmailContato { get; }

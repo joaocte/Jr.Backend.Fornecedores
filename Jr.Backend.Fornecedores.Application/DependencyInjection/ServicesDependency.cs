@@ -2,6 +2,7 @@
 using Jr.Backend.Fornecedores.Application.AutoMapper;
 using Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
+using Jr.Backend.Fornecedores.Application.UseCase.ObterFornecedor;
 using MassTransit;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,8 @@ namespace Jr.Backend.Fornecedores.Application.DependencyInjection
 
             services.AddScoped<IAtualizarFornecedorUseCase, AtualizarFornecedorUseCase>();
             services.Decorate<IAtualizarFornecedorUseCase, AtualizarFornecedorValidationUseCase>();
+
+            services.AddScoped<IObterFornecedorUseCase, ObterFornecedorUseCase>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
@@ -43,7 +46,8 @@ namespace Jr.Backend.Fornecedores.Application.DependencyInjection
                         var uri = configuration["RabbitSetting:UriBase"];
                         var user = configuration["RabbitSetting:User"];
                         var password = configuration["RabbitSetting:Password"];
-                        config.Host(new Uri(uri), h =>
+                        var virtualHost = configuration["RabbitSetting:VirtualHost"];
+                        config.Host(new Uri(uri), virtualHost, h =>
                         {
                             h.Username(user);
                             h.Password(password);

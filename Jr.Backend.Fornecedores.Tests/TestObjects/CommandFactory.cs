@@ -14,7 +14,7 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
                 new EnderecoRequest(x.Bairro, x.Cep, x.Cidade, x.Complemento, x.Estado, x.Logradouro,
                     x.Numero)).ToList();
             return new CadastrarFornecedorCommand(fornecedor.Celular,
-                fornecedor.CNAE,
+                fornecedor.Cnae,
                 fornecedor.Cnpj,
                 fornecedor.DataCadastro,
                 fornecedor.EmailContato.Select(x => x.ToString()),
@@ -34,7 +34,7 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
                 new EnderecoRequest(x.Bairro, x.Cep, x.Cidade, x.Complemento, x.Estado, x.Logradouro,
                     x.Numero)).ToList();
             return new CadastrarFornecedorCommand(fornecedor.Celular,
-                fornecedor.CNAE,
+                fornecedor.Cnae,
                 fornecedor.Cnpj,
                 fornecedor.DataCadastro,
                 fornecedor.EmailContato.Select(x => x.ToString()),
@@ -55,7 +55,7 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
                     x.Numero)).ToList();
             return new AtualizarFornecedorCommand(
                 fornecedor.Celular,
-                fornecedor.CNAE,
+                fornecedor.Cnae,
                 fornecedor.Cnpj,
                 dataCadastro,
                 fornecedor.EmailContato,

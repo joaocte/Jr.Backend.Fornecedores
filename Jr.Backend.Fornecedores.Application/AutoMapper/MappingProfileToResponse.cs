@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
+using Jr.Backend.Fornecedores.Infrastructure.Entity;
 
 namespace Jr.Backend.Fornecedores.Application.AutoMapper
 {
@@ -7,7 +8,7 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
     {
         public MappingProfileToResponse()
         {
-            CreateMap<Infrastructure.Entity.Fornecedor, AtualizarFornecedorCommandResponse>();
+            CreateMap<Fornecedor, AtualizarFornecedorCommandResponse>();
         }
     }
 }

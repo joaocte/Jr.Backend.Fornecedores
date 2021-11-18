@@ -14,7 +14,7 @@ namespace Jr.Backend.Fornecedores.Infrastructure.DependencyInjection
         {
             services.AddServiceDependencyJrInfrastructureMongoDb(ConnectionType.DirectConnection);
 
-            services.AddScoped<IFornecedorRepository>((p) =>
+            services.AddScoped<IFornecedorRepository>(p =>
             {
                 var mongoContext = p.GetService<IMongoContext>();
                 return new FornecedorRepository(mongoContext, typeof(Fornecedor).Name);

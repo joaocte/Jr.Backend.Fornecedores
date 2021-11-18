@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Jr.Backend.Fornecedores.Domain;
 using Jr.Backend.Fornecedores.Domain.Commands;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
-using Jr.Backend.Fornecedores.Domain.ValueObjects;
+using Jr.Backend.Fornecedores.Infrastructure.Entity;
+using Jr.Backend.Fornecedores.Infrastructure.Entity.Comum;
 
 namespace Jr.Backend.Fornecedores.Application.AutoMapper
 {
@@ -10,14 +10,14 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
     {
         public MappingProfileToDomain()
         {
-            CreateMap<Fornecedores.Infrastructure.Entity.Comum.InformacoesBancarias, InformacoesBancarias>();
-            CreateMap<Fornecedores.Infrastructure.Entity.Comum.Endereco, Endereco>();
-            CreateMap<Fornecedores.Infrastructure.Entity.Fornecedor, Fornecedor>();
-            CreateMap<FornecedorCommandRequest, Fornecedor>();
-            CreateMap<InformacoesBancariasRequest, InformacoesBancarias>();
-            CreateMap<EnderecoRequest, Endereco>();
-            CreateMap<CadastrarFornecedorCommand, Fornecedor>();
-            CreateMap<AtualizarFornecedorCommand, Fornecedor>();
+            CreateMap<InformacoesBancarias, Domain.ValueObjects.InformacoesBancarias>();
+            CreateMap<Endereco, Domain.ValueObjects.Endereco>();
+            CreateMap<Fornecedor, Domain.Fornecedor>();
+            CreateMap<FornecedorCommandRequest, Domain.Fornecedor>();
+            CreateMap<InformacoesBancariasRequest, Domain.ValueObjects.InformacoesBancarias>();
+            CreateMap<EnderecoRequest, Domain.ValueObjects.Endereco>();
+            CreateMap<CadastrarFornecedorCommand, Domain.Fornecedor>();
+            CreateMap<AtualizarFornecedorCommand, Domain.Fornecedor>();
         }
     }
 }

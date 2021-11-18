@@ -59,7 +59,7 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             var command = CommandFactory.GerarCadastrarFornecedorCommandValido();
 
             cadastrarFornecedorUseCase.ExecuteAsync(command).Returns(new CadastrarFornecedorCommandResponse(id));
-            fornecedorRepository.ExistsAsync(command.Cnpj.ToString()).Returns(true);
+            fornecedorRepository.ExistsAsync(command.Cnpj).Returns(true);
             Assert.ThrowsAsync<AlreadyRegisteredException>(() =>
                  cadastrarFornecedorUseCaseValidation.ExecuteAsync(command));
 
