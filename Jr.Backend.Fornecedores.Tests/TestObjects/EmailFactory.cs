@@ -1,23 +1,22 @@
-﻿using Jr.Backend.Fornecedores.Domain.ValueObjects;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Jr.Backend.Fornecedores.Tests.TestObjects
 {
     public static class EmailFactory
     {
-        public static EmailContato DeveInstanciarUmEmailContato()
+        public static string DeveInstanciarUmEmailContato()
         {
-            return new EmailContato("emailvalido@gmail.com");
+            return "emailvalido@gmail.com";
         }
 
-        public static EmailFatura DeveInstanciarUmEmailFatura()
+        public static string DeveInstanciarUmEmailFatura()
         {
-            return new EmailFatura("emailvalido@gmail.com");
+            return "emailvalido@gmail.com";
         }
 
-        public static IEnumerable<EmailFatura> DeveInstanciarUmaListaEmailFatura(int quantidade = 1)
+        public static IEnumerable<string> DeveInstanciarUmaListaEmailFatura(int quantidade = 1)
         {
-            List<EmailFatura> emails = new List<EmailFatura>();
+            List<string> emails = new List<string>();
             for (int i = 0; i < quantidade; i++)
             {
                 emails.Add(DeveInstanciarUmEmailFatura());
@@ -26,9 +25,9 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
             return emails;
         }
 
-        public static IEnumerable<EmailContato> DeveInstanciarUmaListaEmailContato(int quantidade = 1)
+        public static IEnumerable<string> DeveInstanciarUmaListaEmailContato(int quantidade = 1)
         {
-            List<EmailContato> emails = new List<EmailContato>();
+            List<string> emails = new List<string>();
             for (int i = 0; i < quantidade; i++)
             {
                 emails.Add(DeveInstanciarUmEmailContato());

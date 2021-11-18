@@ -1,6 +1,4 @@
 ﻿using FluentValidation;
-using Jr.Backend.Fornecedores.Domain.Validations.Emails;
-using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using Jr.Backend.Libs.Domain.Core.Validations;
 
 namespace Jr.Backend.Fornecedores.Domain.Validations
@@ -34,8 +32,8 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
                 .NotEmpty()
                 .WithMessage("Data de cadastrado inválida");
 
-            RuleForEach(x => x.EmailContato).SetValidator(new EmailContatoValidation());
-            RuleForEach(x => x.EmailFatura).SetValidator(new EmailFaturaValidation());
+            RuleForEach(x => x.EmailFatura).EmailAddress().WithMessage("E-mail informado é inválido");
+            RuleForEach(x => x.EmailContato).EmailAddress().WithMessage("E-mail de Contato é obrigatório.");
             RuleFor(p => p.InformacoesBancarias).SetValidator(new InformacoesBancariasValidation());
             RuleForEach(p => p.Enderecos).SetValidator(new EnderecoValidation());
             RuleFor(p => p.NomeContato)
@@ -48,7 +46,7 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
                 .WithMessage("Telefone deve ser informado");
         }
 
-        private bool ValorDeveSerTrue(AceiteTermosDeUso arg)
+        private bool ValorDeveSerTrue(bool arg)
         {
             return arg == true;
         }

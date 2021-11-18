@@ -12,16 +12,16 @@ namespace Jr.Backend.Fornecedores.Domain
     {
         [JsonConstructor]
         public Fornecedor(
-            Celular celular,
-            Cnpj cnpj,
-            IEnumerable<EmailContato> emailContato,
-            IEnumerable<EmailFatura> emailFatura,
+            string celular,
+            string cnpj,
+            IEnumerable<string> emailContato,
+            IEnumerable<string> emailFatura,
             InformacoesBancarias informacoesBancarias,
-            NomeCompleto nomeRazaoSocial,
-            Telefone telefone,
-            CNAE cnae,
-            NomeCompleto nomeContato,
-            AceiteTermosDeUso aceiteTermosDeUso)
+            string nomeRazaoSocial,
+            string telefone,
+            string cnae,
+            string nomeContato,
+            bool aceiteTermosDeUso)
         {
             Celular = celular;
             Cnpj = cnpj;
@@ -43,39 +43,39 @@ namespace Jr.Backend.Fornecedores.Domain
 
         public Fornecedor(
             Guid id,
-            Celular celular,
-            Cnpj cnpj,
-            IEnumerable<EmailContato> emailContato,
-            IEnumerable<EmailFatura> emailFatura,
+            string celular,
+            string cnpj,
+            IEnumerable<string> emailContato,
+            IEnumerable<string> emailFatura,
             InformacoesBancarias informacoesBancarias,
-            NomeCompleto nomeRazaoSocial,
-            Telefone telefone,
-            CNAE cnae,
-            NomeCompleto nomeContato,
-            AceiteTermosDeUso aceiteTermosDeUso, DateTime dataCadastro) : this(celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeRazaoSocial, telefone, cnae, nomeContato, aceiteTermosDeUso)
+            string nomeRazaoSocial,
+            string telefone,
+            string cnae,
+            string nomeContato,
+            bool aceiteTermosDeUso, DateTime dataCadastro) : this(celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeRazaoSocial, telefone, cnae, nomeContato, aceiteTermosDeUso)
         {
             Id = id;
             DataCadastro = dataCadastro;
         }
 
-        public Celular Celular { get; }
+        public string Celular { get; }
 
-        public CNAE CNAE { get; }
-        public Cnpj Cnpj { get; }
+        public string CNAE { get; }
+        public string Cnpj { get; }
         public DateTime DataCadastro { get; }
-        public IEnumerable<EmailContato> EmailContato { get; }
-        public IEnumerable<EmailFatura> EmailFatura { get; }
+        public IEnumerable<string> EmailContato { get; }
+        public IEnumerable<string> EmailFatura { get; }
 
         public List<Endereco> Enderecos { get; }
         public InformacoesBancarias InformacoesBancarias { get; }
 
-        public NomeCompleto NomeContato { get; }
-        public NomeCompleto NomeRazaoSocial { get; }
+        public string NomeContato { get; }
+        public string NomeRazaoSocial { get; }
 
         public StatusCadastro Status { get; private set; }
 
-        public Telefone Telefone { get; }
+        public string Telefone { get; }
 
-        public AceiteTermosDeUso AceiteTermosDeUso { get; set; }
+        public bool AceiteTermosDeUso { get; set; }
     }
 }

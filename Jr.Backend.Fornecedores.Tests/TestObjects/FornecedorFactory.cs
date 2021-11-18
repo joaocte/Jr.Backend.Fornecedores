@@ -8,7 +8,10 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
     {
         public static Fornecedores.Domain.Fornecedor DeveInstanciarUmNovoFornecedorValido()
         {
-            return new Fornecedores.Domain.Fornecedor("celular", "05570796000131", EmailFactory.DeveInstanciarUmaListaEmailContato(),
+            return new Fornecedores.Domain.Fornecedor(
+                "celular",
+                "05570796000131",
+                EmailFactory.DeveInstanciarUmaListaEmailContato(),
                 EmailFactory.DeveInstanciarUmaListaEmailFatura(),
                 new InformacoesBancarias("banco", "agencia", "conta", TipoConta.ContaCorrente), "RazaoSocial",
                 "Telefone", "CNAE", "NomeContato", true);

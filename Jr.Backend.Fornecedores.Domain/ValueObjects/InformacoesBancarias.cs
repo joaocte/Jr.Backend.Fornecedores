@@ -6,7 +6,7 @@ namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
     public class InformacoesBancarias : GenericValueObject
     {
-        public InformacoesBancarias(Banco banco, Agencia agencia, Conta conta, TipoConta tipoConta)
+        public InformacoesBancarias(string banco, string agencia, string conta, TipoConta tipoConta)
         {
             Banco = banco;
             Agencia = agencia;
@@ -14,9 +14,9 @@ namespace Jr.Backend.Fornecedores.Domain.ValueObjects
             TipoConta = tipoConta;
         }
 
-        public Agencia Agencia { get; private set; }
-        public Banco Banco { get; private set; }
-        public Conta Conta { get; private set; }
+        public string Agencia { get; private set; }
+        public string Banco { get; private set; }
+        public string Conta { get; private set; }
         public TipoConta TipoConta { get; private set; }
 
         protected override IEnumerable<object> GetEqualityComponents()

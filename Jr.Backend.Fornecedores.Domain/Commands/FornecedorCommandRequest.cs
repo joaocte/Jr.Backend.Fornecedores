@@ -1,5 +1,4 @@
-﻿using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Jr.Backend.Fornecedores.Domain.Commands
@@ -20,13 +19,11 @@ namespace Jr.Backend.Fornecedores.Domain.Commands
         public string NomeContato { get; }
         public string NomeRazaoSocial { get; }
 
-        public StatusCadastro Status { get; }
-
         public string Telefone { get; }
 
         public bool AceiteTermosDeUso { get; }
 
-        public FornecedorCommandRequest(string celular, string cnae, string cnpj, DateTime dataCadastro, IEnumerable<string> emailContato, IEnumerable<string> emailFatura, List<EnderecoRequest> enderecos, InformacoesBancariasRequest informacoesBancarias, string nomeContato, string nomeRazaoSocial, StatusCadastro status, string telefone, bool aceiteTermosDeUso)
+        public FornecedorCommandRequest(string celular, string cnae, string cnpj, DateTime dataCadastro, IEnumerable<string> emailContato, IEnumerable<string> emailFatura, List<EnderecoRequest> enderecos, InformacoesBancariasRequest informacoesBancarias, string nomeContato, string nomeRazaoSocial, string telefone, bool aceiteTermosDeUso)
         {
             Celular = celular;
             CNAE = cnae;
@@ -38,7 +35,6 @@ namespace Jr.Backend.Fornecedores.Domain.Commands
             InformacoesBancarias = informacoesBancarias;
             NomeContato = nomeContato;
             NomeRazaoSocial = nomeRazaoSocial;
-            Status = status;
             Telefone = telefone;
             AceiteTermosDeUso = aceiteTermosDeUso;
         }

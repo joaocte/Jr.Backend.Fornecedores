@@ -23,7 +23,6 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
                 new InformacoesBancariasRequest(fornecedor.InformacoesBancarias.Agencia, fornecedor.InformacoesBancarias.Banco, fornecedor.InformacoesBancarias.Conta, fornecedor.InformacoesBancarias.TipoConta),
                 fornecedor.NomeContato,
                 fornecedor.NomeRazaoSocial,
-                fornecedor.Status,
                 fornecedor.Telefone,
                 fornecedor.AceiteTermosDeUso);
         }
@@ -44,7 +43,6 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
                 new InformacoesBancariasRequest(fornecedor.InformacoesBancarias.Agencia, fornecedor.InformacoesBancarias.Banco, fornecedor.InformacoesBancarias.Conta, fornecedor.InformacoesBancarias.TipoConta),
                 fornecedor.NomeContato,
                 fornecedor.NomeRazaoSocial,
-                fornecedor.Status,
                 fornecedor.Telefone,
                 fornecedor.AceiteTermosDeUso);
         }
@@ -60,13 +58,12 @@ namespace Jr.Backend.Fornecedores.Tests.TestObjects
                 fornecedor.CNAE,
                 fornecedor.Cnpj,
                 dataCadastro,
-                fornecedor.EmailContato.Select(x => x.ToString()),
-                fornecedor.EmailFatura.Select(x => x.ToString()),
+                fornecedor.EmailContato,
+                fornecedor.EmailFatura,
                 enderecos,
                 new InformacoesBancariasRequest(fornecedor.InformacoesBancarias.Agencia, fornecedor.InformacoesBancarias.Banco, fornecedor.InformacoesBancarias.Conta, fornecedor.InformacoesBancarias.TipoConta),
                 fornecedor.NomeContato,
                 fornecedor.NomeRazaoSocial,
-                fornecedor.Status,
                 fornecedor.Telefone,
                 fornecedor.AceiteTermosDeUso,
                 id);
