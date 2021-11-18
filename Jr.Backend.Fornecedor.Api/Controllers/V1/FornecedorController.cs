@@ -2,11 +2,11 @@
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Domain.Querys.Request;
-using Jr.Backend.Fornecedores.Domain.Querys.Response;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Jr.Backend.Fornecedor.Api.Controllers.V1
@@ -17,7 +17,7 @@ namespace Jr.Backend.Fornecedor.Api.Controllers.V1
     public class FornecedorController : ControllerBase
     {
         [HttpGet]
-        public async Task<ObterFornecedorResponse> Get([FromServices] IMediator mediator, [FromQuery] ObterFornecedorQuery query)
+        public async Task<IEnumerable<Fornecedores.Domain.Fornecedor>> Get([FromServices] IMediator mediator, [FromQuery] ObterFornecedorQuery query)
         {
             return await mediator.Send(query);
         }

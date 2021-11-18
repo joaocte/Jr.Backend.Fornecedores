@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Jr.Backend.Fornecedores.Domain;
-using Jr.Backend.Fornecedores.Domain.Querys.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
 using Jr.Backend.Libs.Extensions;
@@ -23,7 +22,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.ObterFornecedor
             this.mapper = mapper;
         }
 
-        public async Task<ObterFornecedorResponse> ExecuteAsync(Domain.Querys.Request.ObterFornecedorQuery query, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Fornecedor>> ExecuteAsync(Domain.Querys.Request.ObterFornecedorQuery query, CancellationToken cancellationToken = default)
         {
             var fornecedorEntityQueryable = await fornecedorRepository.GetAllAsQueryableAsync(cancellationToken);
 
@@ -32,9 +31,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.ObterFornecedor
             if ((bool)!fornecedoresEntity?.Any())
                 throw new NotFoundException($"Não foi encontrado fornecedor para consulta informada.");
 
-            var fornecedorDomain = mapper.Map<IEnumerable<Fornecedor>>(fornecedoresEntity);
-
-            return new ObterFornecedorResponse(fornecedorDomain);
+            return mapper.Map<IEnumerable<Fornecedor>>(fornecedoresEntity);
         }
 
         protected virtual void Dispose(bool disposing)
