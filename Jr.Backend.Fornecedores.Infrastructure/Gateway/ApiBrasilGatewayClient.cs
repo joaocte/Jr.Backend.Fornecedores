@@ -33,7 +33,6 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Gateway
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

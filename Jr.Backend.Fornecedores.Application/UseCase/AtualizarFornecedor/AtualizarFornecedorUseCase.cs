@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
+using Jr.Backend.Fornecedores.Domain;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
-using Jr.Backend.Fornecedores.Infrastructure.Entity;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using Jr.Backend.Message.Events.Fornecedor.Events;
 using MassTransit;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,19 +28,25 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
 
         public async Task<AtualizarFornecedorCommandResponse> ExecuteAsync(AtualizarFornecedorCommand command, CancellationToken cancellationToken = default)
         {
-            Fornecedor fornecedor = mapper.Map<Fornecedor>(command);
+            var fornecedor = await fornecedorRepository.GetAsync(x => x.Cnpj == command.Cnpj, cancellationToken);
 
-            var taskUpdate = fornecedorRepository.UpdateAsync(fornecedor, cancellationToken);
+            var fornecedorDomain = mapper.Map<Fornecedor>(fornecedor);
+
+            fornecedorDomain.AdicionarInformacoesCommand(command);
+
+            var fornecedorUpdate = mapper.Map<Infrastructure.Entity.Fornecedor>(fornecedorDomain);
+
+            var taskUpdate = fornecedorRepository.UpdateAsync(fornecedorUpdate, cancellationToken);
 
             var taksCommit = iUnitOfWork.CommitAsync();
 
-            await Task.WhenAll(taskUpdate, taksCommit);
-
             var @event = mapper.Map<FornecedorAtualizadoEvent>(fornecedor);
 
-            await bus.Publish(@event, cancellationToken);
+            var evemtTask = bus.Publish(@event, cancellationToken);
 
-            return mapper.Map<AtualizarFornecedorCommandResponse>(fornecedor);
+            await Task.WhenAll(taskUpdate, taksCommit, evemtTask);
+
+            return mapper.Map<AtualizarFornecedorCommandResponse>(fornecedorUpdate);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -56,7 +61,6 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

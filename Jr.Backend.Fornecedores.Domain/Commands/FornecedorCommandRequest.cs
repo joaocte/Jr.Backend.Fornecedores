@@ -4,7 +4,7 @@ namespace Jr.Backend.Fornecedores.Domain.Commands
 {
     public class FornecedorCommandRequest
     {
-        public FornecedorCommandRequest(bool aceiteTermosDeUso, string celular, string cnpj, IEnumerable<string> emailContato, IEnumerable<string> emailFatura, InformacoesBancariasRequest informacoesBancarias, string nomeContato)
+        public FornecedorCommandRequest(bool aceiteTermosDeUso, string celular, string cnpj, ICollection<string> emailContato, ICollection<string> emailFatura, InformacoesBancariasRequest informacoesBancarias, string nomeContato)
         {
             AceiteTermosDeUso = aceiteTermosDeUso;
             Celular = celular;
@@ -19,8 +19,8 @@ namespace Jr.Backend.Fornecedores.Domain.Commands
         public string Celular { get; }
 
         public string Cnpj { get; }
-        public IEnumerable<string> EmailContato { get; }
-        public IEnumerable<string> EmailFatura { get; }
+        public ICollection<string> EmailContato { get; }
+        public ICollection<string> EmailFatura { get; }
 
         public InformacoesBancariasRequest InformacoesBancarias { get; }
 

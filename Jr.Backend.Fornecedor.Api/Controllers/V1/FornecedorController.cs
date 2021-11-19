@@ -1,5 +1,4 @@
-﻿using Jr.Backend.Fornecedores.Domain.Commands;
-using Jr.Backend.Fornecedores.Domain.Commands.Request;
+﻿using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Domain.Querys.Request;
 using MediatR;
@@ -39,12 +38,9 @@ namespace Jr.Backend.Fornecedor.Api.Controllers.V1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<AtualizarFornecedorCommandResponse> Put(Guid id, [FromBody] FornecedorCommandRequest command, [FromServices] IMediator mediator)
+        public async Task<AtualizarFornecedorCommandResponse> Put(Guid id, [FromBody] AtualizarFornecedorCommand command, [FromServices] IMediator mediator)
         {
-            //var newCommand = new AtualizarFornecedorCommand(
-            //return await mediator.Send(newCommand);
-
-            return default;
+            return await mediator.Send(command);
         }
     }
 }

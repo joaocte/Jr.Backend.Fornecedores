@@ -6,7 +6,7 @@ namespace Jr.Backend.Fornecedores.Domain.Commands.Request
 {
     public class CadastrarFornecedorCommand : FornecedorCommandRequest, IRequest<CadastrarFornecedorCommandResponse>
     {
-        public CadastrarFornecedorCommand(bool aceiteTermosDeUso, string celular, string cnpj, IEnumerable<string> emailContato, IEnumerable<string> emailFatura, InformacoesBancariasRequest informacoesBancarias, string nomeContato) : base(aceiteTermosDeUso, celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeContato)
+        public CadastrarFornecedorCommand(bool aceiteTermosDeUso, string celular, string cnpj, ICollection<string> emailContato, ICollection<string> emailFatura, InformacoesBancariasRequest informacoesBancarias, string nomeContato) : base(aceiteTermosDeUso, celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeContato)
         {
         }
     }

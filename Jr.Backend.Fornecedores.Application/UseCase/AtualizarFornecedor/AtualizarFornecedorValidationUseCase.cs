@@ -5,7 +5,6 @@ using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
 using Jr.Backend.Libs.Domain.Abstractions.Notifications;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,17 +25,16 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
             this.mapper = mapper;
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<AtualizarFornecedorCommandResponse> ExecuteAsync(AtualizarFornecedorCommand command, CancellationToken cancellationToken = default)
         {
-            var fornecedor = mapper.Map<Fornecedor>(command);
-            if (fornecedor.Invalid)
+            var fornecedor = await fornecedorRepository.GetAsync(x => x.Cnpj == command.Cnpj, cancellationToken);
+
+            var fornecedorDomain = mapper.Map<Fornecedor>(fornecedor);
+
+            fornecedorDomain.AdicionarInformacoesCommand(command);
+            if (fornecedorDomain.Invalid)
             {
-                notificationContext.AddNotifications(fornecedor.ValidationResult);
+                notificationContext.AddNotifications(fornecedorDomain.ValidationResult);
                 return default;
             }
             var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(command.Cnpj)
@@ -45,6 +43,20 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
                 throw new NotFoundException(
                     $"Cnpj {command.Cnpj} ou Id {command.Id} Não encontrado!");
             return await atualizarFornecedorUseCase.ExecuteAsync(command);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                atualizarFornecedorUseCase?.Dispose();
+                fornecedorRepository?.Dispose();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
     }
 }

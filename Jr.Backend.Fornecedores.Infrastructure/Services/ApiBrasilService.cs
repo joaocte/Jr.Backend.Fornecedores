@@ -85,7 +85,6 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Services
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

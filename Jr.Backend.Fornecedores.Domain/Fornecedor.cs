@@ -3,6 +3,7 @@ using Jr.Backend.Fornecedores.Domain.Validations;
 using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
 using Jr.Backend.Libs.Domain.Abstractions;
+using Jr.Backend.Libs.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -59,7 +60,7 @@ namespace Jr.Backend.Fornecedores.Domain
             DateTime dataCadastro, DateTime? dataExclusaoDoSimples, DateTime dataInicioAtividade,
             DateTime? dataOpcaoPeloSimples, DateTime dataSituacaoCadastral, DateTime? dataSituacaoEspecial,
             string descricaoMatrizFilial, string descricaoPorte, string descricaoSituacaoCadastral,
-            IEnumerable<string> emailContato, IEnumerable<string> emailFatura, List<Endereco> enderecos,
+            ICollection<string> emailContato, ICollection<string> emailFatura, List<Endereco> enderecos,
             int identificadorMatrizFilial, InformacoesBancarias informacoesBancarias, int motivoSituacaoCadastral,
             string nomeCidadeExterior, string nomeContato, string nomeFantasia, bool opcaoPeloMei,
             bool opcaoPeloSimples, int porte, List<Qsa> qsa, int qualificacaoDoResponsavel, string razaoSocial,
@@ -82,7 +83,7 @@ namespace Jr.Backend.Fornecedores.Domain
             DateTime dataCadastro, DateTime? dataExclusaoDoSimples, DateTime dataInicioAtividade,
             DateTime? dataOpcaoPeloSimples, DateTime dataSituacaoCadastral, DateTime? dataSituacaoEspecial,
             string descricaoMatrizFilial, string descricaoPorte, string descricaoSituacaoCadastral,
-            IEnumerable<string> emailContato, IEnumerable<string> emailFatura, List<Endereco> enderecos,
+            ICollection<string> emailContato, ICollection<string> emailFatura, List<Endereco> enderecos,
             int identificadorMatrizFilial, InformacoesBancarias informacoesBancarias, int motivoSituacaoCadastral,
             string nomeCidadeExterior, string nomeContato, string nomeFantasia, bool opcaoPeloMei,
             bool opcaoPeloSimples, int porte, List<Qsa> qsa, int qualificacaoDoResponsavel, string razaoSocial,
@@ -117,8 +118,8 @@ namespace Jr.Backend.Fornecedores.Domain
         public string DescricaoPorte { get; private set; }
         public string DescricaoSituacaoCadastral { get; private set; }
 
-        public IEnumerable<string> EmailContato { get; private set; }
-        public IEnumerable<string> EmailFatura { get; private set; }
+        public ICollection<string> EmailContato { get; private set; }
+        public ICollection<string> EmailFatura { get; private set; }
         public List<Endereco> Enderecos { get; private set; }
         public int IdentificadorMatrizFilial { get; private set; }
         public InformacoesBancarias InformacoesBancarias { get; private set; }
@@ -144,6 +145,16 @@ namespace Jr.Backend.Fornecedores.Domain
             EmailContato = command.EmailContato;
             EmailFatura = command.EmailFatura;
             NomeContato = command.NomeContato;
+            InformacoesBancarias = new InformacoesBancarias(command.InformacoesBancarias.Banco, command.InformacoesBancarias.Agencia, command.InformacoesBancarias.Conta, command.InformacoesBancarias.TipoConta);
+            Validate(this, new FornecedorValidation());
+        }
+
+        public void AdicionarInformacoesCommand(AtualizarFornecedorCommand command)
+        {
+            Celular = string.IsNullOrWhiteSpace(command.Celular) ? Celular : command.Celular;
+            EmailContato.AddRange(command.EmailContato);
+            EmailFatura.AddRange(command.EmailFatura);
+            NomeContato = string.IsNullOrWhiteSpace(command.NomeContato) ? NomeContato : command.NomeContato;
             InformacoesBancarias = new InformacoesBancarias(command.InformacoesBancarias.Banco, command.InformacoesBancarias.Agencia, command.InformacoesBancarias.Conta, command.InformacoesBancarias.TipoConta);
             Validate(this, new FornecedorValidation());
         }
