@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Jr.Backend.Fornecedores.Domain.Commands.Request;
+﻿using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Infrastructure.Services.Interface;
@@ -14,15 +13,13 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
     {
         private readonly ICadastrarFornecedorUseCase cadastrarFornecedorUseCase;
         private readonly IFornecedorRepository fornecedorRepository;
-        private readonly IMapper mapper;
         private readonly INotificationContext notificationContext;
         private readonly IApiBrasilService service;
 
-        public CadastrarFornecedorUseCaseValidation(ICadastrarFornecedorUseCase cadastrarFornecedorUseCase, IFornecedorRepository fornecedorRepository, IMapper mapper, INotificationContext notificationContext, IApiBrasilService service)
+        public CadastrarFornecedorUseCaseValidation(ICadastrarFornecedorUseCase cadastrarFornecedorUseCase, IFornecedorRepository fornecedorRepository, INotificationContext notificationContext, IApiBrasilService service)
         {
             this.cadastrarFornecedorUseCase = cadastrarFornecedorUseCase;
             this.fornecedorRepository = fornecedorRepository;
-            this.mapper = mapper;
             this.notificationContext = notificationContext;
             this.service = service;
         }

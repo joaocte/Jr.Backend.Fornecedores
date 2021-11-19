@@ -1,5 +1,5 @@
-﻿using Jr.Backend.Fornecedores.Domain.ValueObjects;
-using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
+﻿using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
+using Jr.Backend.Fornecedores.Infrastructure.Entity.Comum;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;

@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Bogus;
-using Jr.Backend.Fornecedores.Application.AutoMapper;
+﻿using Bogus;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
 using Jr.Backend.Fornecedores.Domain.Commands;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
@@ -24,7 +22,6 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         private readonly ICadastrarFornecedorUseCase cadastrarFornecedorUseCase;
         private readonly ICadastrarFornecedorUseCase cadastrarFornecedorUseCaseValidation;
         private readonly IFornecedorRepository fornecedorRepository;
-        private readonly IMapper mapper;
         private readonly INotificationContext notificationContext;
         private readonly IApiBrasilService service;
 
@@ -34,15 +31,8 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             fornecedorRepository = Substitute.For<IFornecedorRepository>();
             service = Substitute.For<IApiBrasilService>();
             notificationContext = new NotificationContext();
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfileToDomain());
-                mc.AddProfile(new MappingProfileToEntity());
-                mc.AddProfile(new MappingProfileToEnvent());
-            });
-            mapper = mappingConfig.CreateMapper();
             cadastrarFornecedorUseCaseValidation = new CadastrarFornecedorUseCaseValidation(cadastrarFornecedorUseCase,
-                fornecedorRepository, mapper, notificationContext, service);
+                fornecedorRepository, notificationContext, service);
         }
 
         [Fact]

@@ -5,6 +5,7 @@ using Jr.Backend.Fornecedores.Infrastructure.Entity;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Infrastructure.Services.Interface;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+using Jr.Backend.Message.Events.Fornecedor.Events;
 using MassTransit;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,9 +41,9 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
             var taskCommit = unitOfWork.CommitAsync();
 
             await Task.WhenAll(taskInsert, taskCommit);
-            //var @event = mapper.Map<FornecedorCadastradoEvent>(entityFornecedor);
+            var @event = mapper.Map<FornecedorCadastradoEvent>(entityFornecedor);
 
-            //await bus.Publish(@event, cancellationToken);
+            await bus.Publish(@event, cancellationToken);
             return new CadastrarFornecedorCommandResponse(entityFornecedor.Id);
         }
 

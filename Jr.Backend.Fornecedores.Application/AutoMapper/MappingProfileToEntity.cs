@@ -17,6 +17,8 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
             CreateMap<EnderecoRequest, Infrastructure.Entity.Comum.Endereco>();
             CreateMap<FornecedorCommandRequest, Infrastructure.Entity.Fornecedor>();
             CreateMap<AtualizarFornecedorCommand, Infrastructure.Entity.Fornecedor>();
+            CreateMap<Qsa, Infrastructure.Entity.Comum.Qsa>();
+            CreateMap<CnaesSecundario, Infrastructure.Entity.Comum.CnaesSecundario>();
         }
     }
 }
