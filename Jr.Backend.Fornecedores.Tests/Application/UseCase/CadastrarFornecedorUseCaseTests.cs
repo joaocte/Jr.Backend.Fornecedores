@@ -2,14 +2,18 @@
 using Bogus;
 using Jr.Backend.Fornecedores.Application.AutoMapper;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
+using Jr.Backend.Fornecedores.Domain.Commands;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
+using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Infrastructure.Services.Interface;
+using Jr.Backend.Fornecedores.Tests.TesteObjects;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
-using Jr.Backend.Message.Events.Fornecedor.Events;
 using MassTransit;
 using NSubstitute;
+using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
@@ -46,9 +50,18 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         [Fact]
         public void QuandoReceberUmaRequisicaoValidaEntaoCadastrarOFornecedor()
         {
-            var command = new Faker<CadastrarFornecedorCommand>().RuleFor(x => x.Cnpj, x => "47419051000116").Generate();
+            var dataCadastro = DateTime.Now.AddDays(-3);
+            var fornecedor = FornecedorFactory.DeveInstanciarUmFornecedorValido();
+            var command = new Faker<CadastrarFornecedorCommand>().CustomInstantiator(f =>
+                new CadastrarFornecedorCommand(true, "celular", fornecedor.Cnpj, new List<string> { "email@teste.com.br" },
+                    new List<string> { "email@teste.com.br" },
+                    new InformacoesBancariasRequest("agencia", "banco", "conta", TipoConta.ContaCorrente),
+                    "nomeContato")).Generate();
+
+            service.ObterInformacoesDaEmpresaPorCnpj(fornecedor.Cnpj).Returns(fornecedor);
+
             var retorno = cadastrarFornecedorUseCase.ExecuteAsync(command).Result;
-            bus.Received(1).Publish(Arg.Any<FornecedorCadastradoEvent>());
+            //bus.Received(1).Publish(Arg.Any<FornecedorCadastradoEvent>());
             fornecedorRepository.Received(1).AddAsync(Arg.Any<Infrastructure.Entity.Fornecedor>());
             unitOfWork.Received(1).CommitAsync();
             Assert.IsType<CadastrarFornecedorCommandResponse>(retorno);

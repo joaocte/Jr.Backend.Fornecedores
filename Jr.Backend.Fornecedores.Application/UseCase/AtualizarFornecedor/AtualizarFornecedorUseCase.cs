@@ -4,7 +4,6 @@ using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Entity;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
-using Jr.Backend.Message.Events.Fornecedor.Events;
 using MassTransit;
 using System;
 using System.Threading;
@@ -37,9 +36,9 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
 
             await Task.WhenAll(taskUpdate, taksCommit);
 
-            var @event = mapper.Map<FornecedorAtualizadoEvent>(fornecedor);
+            //var @event = mapper.Map<FornecedorAtualizadoEvent>(fornecedor);
 
-            await bus.Publish(@event, cancellationToken);
+            //await bus.Publish(@event, cancellationToken);
 
             return mapper.Map<AtualizarFornecedorCommandResponse>(fornecedor);
         }
