@@ -27,7 +27,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
 
         public async Task<AtualizarFornecedorCommandResponse> ExecuteAsync(AtualizarFornecedorCommand command, CancellationToken cancellationToken = default)
         {
-            var fornecedor = await fornecedorRepository.GetAsync(x => x.Cnpj == command.Cnpj, cancellationToken);
+            var fornecedor = await fornecedorRepository.GetByIdAsync(command.Id, cancellationToken);
 
             var fornecedorDomain = mapper.Map<Fornecedor>(fornecedor);
 
@@ -37,11 +37,11 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
                 notificationContext.AddNotifications(fornecedorDomain.ValidationResult);
                 return default;
             }
-            var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(command.Cnpj)
+            var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(fornecedor.Cnpj)
                                          && await fornecedorRepository.ExistsAsync(command.Id);
             if (!fornecedorJaCadastrado)
                 throw new NotFoundException(
-                    $"Cnpj {command.Cnpj} ou Id {command.Id} Não encontrado!");
+                    $"Cnpj {fornecedor.Cnpj} ou Id {command.Id} Não encontrado!");
             return await atualizarFornecedorUseCase.ExecuteAsync(command);
         }
 

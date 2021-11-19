@@ -28,7 +28,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
 
         public async Task<AtualizarFornecedorCommandResponse> ExecuteAsync(AtualizarFornecedorCommand command, CancellationToken cancellationToken = default)
         {
-            var fornecedor = await fornecedorRepository.GetAsync(x => x.Cnpj == command.Cnpj, cancellationToken);
+            var fornecedor = await fornecedorRepository.GetByIdAsync(command.Id, cancellationToken);
 
             var fornecedorDomain = mapper.Map<Fornecedor>(fornecedor);
 

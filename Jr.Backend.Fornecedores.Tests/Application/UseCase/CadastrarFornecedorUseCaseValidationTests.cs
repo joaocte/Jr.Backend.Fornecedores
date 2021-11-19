@@ -42,10 +42,10 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             var fornecedor = FornecedorFactory.DeveInstanciarUmFornecedorValido();
 
             var command = new Faker<CadastrarFornecedorCommand>().CustomInstantiator(f =>
-                new CadastrarFornecedorCommand(true, "celular", fornecedor.Cnpj, new List<string> { "email@teste.com.br" },
+                new CadastrarFornecedorCommand("celular", fornecedor.Cnpj, new List<string> { "email@teste.com.br" },
                     new List<string> { "email@teste.com.br" },
                     new InformacoesBancariasRequest("agencia", "banco", "conta", TipoConta.ContaCorrente),
-                    "nomeContato")).Generate();
+                    "nomeContato", true)).Generate();
             service.ObterInformacoesDaEmpresaPorCnpj(fornecedor.Cnpj).Returns(fornecedor);
             cadastrarFornecedorUseCase.ExecuteAsync(command).Returns(new CadastrarFornecedorCommandResponse(id));
 
@@ -64,10 +64,10 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             var fornecedor = FornecedorFactory.DeveInstanciarUmFornecedorValido();
 
             var command = new Faker<CadastrarFornecedorCommand>().CustomInstantiator(f =>
-                new CadastrarFornecedorCommand(true, "celular", fornecedor.Cnpj, new List<string> { "email@teste.com.br" },
+                new CadastrarFornecedorCommand("celular", fornecedor.Cnpj, new List<string> { "email@teste.com.br" },
                     new List<string> { "email@teste.com.br" },
                     new InformacoesBancariasRequest("agencia", "banco", "conta", TipoConta.ContaCorrente),
-                    "nomeContato")).Generate();
+                    "nomeContato", true)).Generate();
             service.ObterInformacoesDaEmpresaPorCnpj(fornecedor.Cnpj).Returns(fornecedor);
 
             cadastrarFornecedorUseCase.ExecuteAsync(command).Returns(new CadastrarFornecedorCommandResponse(id));
@@ -86,10 +86,10 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             var fornecedor = FornecedorFactory.DeveInstanciarUmFornecedorInvalido();
 
             var command = new Faker<CadastrarFornecedorCommand>().CustomInstantiator(f =>
-                new CadastrarFornecedorCommand(true, "celular", fornecedor.Cnpj, new List<string> { "email@teste.com.br" },
+                new CadastrarFornecedorCommand("celular", fornecedor.Cnpj, new List<string> { "email@teste.com.br" },
                     new List<string> { },
                     new InformacoesBancariasRequest("", "", "", TipoConta.ContaCorrente),
-                    "nomeContato")).Generate();
+                    "nomeContato", true)).Generate();
             service.ObterInformacoesDaEmpresaPorCnpj(fornecedor.Cnpj).Returns(fornecedor);
             var retorno = cadastrarFornecedorUseCaseValidation.ExecuteAsync(command).Result;
 

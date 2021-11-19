@@ -6,8 +6,13 @@ namespace Jr.Backend.Fornecedores.Domain.Commands.Request
 {
     public class CadastrarFornecedorCommand : FornecedorCommandRequest, IRequest<CadastrarFornecedorCommandResponse>
     {
-        public CadastrarFornecedorCommand(bool aceiteTermosDeUso, string celular, string cnpj, ICollection<string> emailContato, ICollection<string> emailFatura, InformacoesBancariasRequest informacoesBancarias, string nomeContato) : base(aceiteTermosDeUso, celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeContato)
+        public bool AceiteTermosDeUso { get; }
+        public string Cnpj { get; }
+
+        public CadastrarFornecedorCommand(string celular, string cnpj, ICollection<string> emailContato, ICollection<string> emailFatura, InformacoesBancariasRequest informacoesBancarias, string nomeContato, bool aceiteTermosDeUso) : base(celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeContato)
         {
+            Cnpj = cnpj;
+            AceiteTermosDeUso = aceiteTermosDeUso;
         }
     }
 }

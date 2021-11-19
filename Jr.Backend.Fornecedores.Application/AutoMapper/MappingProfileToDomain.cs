@@ -19,7 +19,6 @@ namespace Jr.Backend.Fornecedores.Application.AutoMapper
             CreateMap<InformacoesBancariasRequest, Domain.ValueObjects.InformacoesBancarias>();
             CreateMap<Qsa, Domain.ValueObjects.Qsa>();
             CreateMap<CnaesSecundario, Domain.ValueObjects.CnaesSecundario>();
-            CreateMap<EnderecoRequest, Domain.ValueObjects.Endereco>();
             CreateMap<CadastrarFornecedorCommand, Domain.Fornecedor>();
             CreateMap<AtualizarFornecedorCommand, Domain.Fornecedor>();
         }

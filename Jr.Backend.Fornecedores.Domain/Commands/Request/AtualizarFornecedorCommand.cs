@@ -9,10 +9,7 @@ namespace Jr.Backend.Fornecedores.Domain.Commands.Request
     {
         public Guid Id { get; }
 
-        public AtualizarFornecedorCommand(bool aceiteTermosDeUso, string celular, string cnpj,
-            ICollection<string> emailContato, ICollection<string> emailFatura,
-            InformacoesBancariasRequest informacoesBancarias, string nomeContato, Guid id) : base(aceiteTermosDeUso, celular,
-            cnpj, emailContato, emailFatura, informacoesBancarias, nomeContato)
+        public AtualizarFornecedorCommand(string celular, string cnpj, ICollection<string> emailContato, ICollection<string> emailFatura, InformacoesBancariasRequest informacoesBancarias, string nomeContato, Guid id) : base(celular, cnpj, emailContato, emailFatura, informacoesBancarias, nomeContato)
         {
             Id = id;
         }

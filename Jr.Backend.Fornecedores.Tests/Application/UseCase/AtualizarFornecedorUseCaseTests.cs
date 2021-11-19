@@ -6,11 +6,12 @@ using Jr.Backend.Fornecedores.Domain.Commands;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
+using Jr.Backend.Fornecedores.Tests.TesteObjects;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
+using Jr.Backend.Message.Events.Fornecedor.Events;
 using MassTransit;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
@@ -43,15 +44,20 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         public void QuandoRecerAtualizarFornecedorCommandValidoEntaoRealizarOperacaoComSucesso()
         {
             var id = Guid.NewGuid();
-            AtualizarFornecedorCommand command = new AutoFaker<AtualizarFornecedorCommand>().CustomInstantiator(f =>
-                new AtualizarFornecedorCommand(true, "celular", "42355973000193", new List<string> { "joaocte@gmail.com" },
-                    new List<string> { "joaocte@gmail.com" },
-                    new InformacoesBancariasRequest("agencia", "banco", "conta", TipoConta.ContaCorrente),
-                    "nomeContato", id)).Generate();
 
+            var fornecedor = FornecedorFactory.DeveInstanciarUmFornecedorValido(id, DateTime.Now);
+            AtualizarFornecedorCommand command = new AutoFaker<AtualizarFornecedorCommand>().CustomInstantiator(f =>
+                new AtualizarFornecedorCommand(fornecedor.Celular, fornecedor.Cnpj, fornecedor.EmailContato,
+                    fornecedor.EmailFatura,
+                    new InformacoesBancariasRequest("agencia", "banco", "conta", TipoConta.ContaCorrente),
+                    fornecedor.NomeContato, fornecedor.Id)).Generate();
+            fornecedorRepository.GetByIdAsync(command.Id)
+                .Returns(mapper.Map<Infrastructure.Entity.Fornecedor>(fornecedor));
             var response = atualizarFornecedorUseCase.ExecuteAsync(command).Result;
 
-            //bus.Received(1).Publish(Arg.Any<FornecedorAtualizadoEvent>());
+            bus.Received(1).Publish(Arg.Any<FornecedorAtualizadoEvent>());
+            fornecedorRepository.Received(1).GetByIdAsync(id);
+            fornecedorRepository.Received(1).UpdateAsync(Arg.Any<Infrastructure.Entity.Fornecedor>());
             Assert.NotNull(response);
             Assert.Equal(id, response.Id);
         }
