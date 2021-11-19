@@ -41,8 +41,10 @@ namespace Jr.Backend.Fornecedor.Api.Controllers.V1
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<AtualizarFornecedorCommandResponse> Put(Guid id, [FromBody] FornecedorCommandRequest command, [FromServices] IMediator mediator)
         {
-            var newCommand = new AtualizarFornecedorCommand(command.Celular, command.CNAE, command.Cnpj, command.DataCadastro, command.EmailContato, command.EmailFatura, command.Enderecos, command.InformacoesBancarias, command.NomeContato, command.NomeRazaoSocial, command.Telefone, command.AceiteTermosDeUso, id);
-            return await mediator.Send(newCommand);
+            //var newCommand = new AtualizarFornecedorCommand(
+            //return await mediator.Send(newCommand);
+
+            return default;
         }
     }
 }

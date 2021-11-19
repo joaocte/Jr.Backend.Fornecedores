@@ -1,5 +1,6 @@
-﻿using Jr.Backend.Fornecedores.Domain.Validations;
-using Jr.Backend.Fornecedores.Tests.TestObjects;
+﻿using Bogus;
+using Jr.Backend.Fornecedores.Domain.Validations;
+using Jr.Backend.Fornecedores.Tests.TesteObjects;
 using System;
 using Xunit;
 
@@ -10,7 +11,7 @@ namespace Jr.Backend.Fornecedores.Tests.Domain
         [Fact]
         public void DeveInstanciarUmFornecedorValido()
         {
-            var fornecedor = FornecedorFactory.DeveInstanciarUmNovoFornecedorValido();
+            var fornecedor = new Faker<Fornecedores.Domain.Fornecedor>().RuleFor(x => x.Cnpj, x => "47419051000116").Generate();
 
             fornecedor.Validate(fornecedor, new FornecedorValidation());
 
@@ -22,7 +23,8 @@ namespace Jr.Backend.Fornecedores.Tests.Domain
         {
             var id = Guid.NewGuid();
             var dataCadastro = DateTime.Now.AddDays(-2);
-            var fornecedor = FornecedorFactory.DeveInstanciarUmFornecedorJaCadastrado(id, dataCadastro);
+
+            var fornecedor = FornecedorFactory.DeveInstanciarUmFornecedorValido(id, dataCadastro);
 
             fornecedor.Validate(fornecedor, new FornecedorValidation());
 

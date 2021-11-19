@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Bogus;
 using Jr.Backend.Fornecedores.Application.AutoMapper;
 using Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor;
+using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
-using Jr.Backend.Fornecedores.Tests.TestObjects;
+using Jr.Backend.Fornecedores.Infrastructure.Services.Interface;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
 using Jr.Backend.Libs.Domain.Abstractions.Notifications;
 using Jr.Backend.Libs.Domain.Notifications;
@@ -20,11 +22,13 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         private readonly IFornecedorRepository fornecedorRepository;
         private readonly IMapper mapper;
         private readonly INotificationContext notificationContext;
+        private readonly IApiBrasilService service;
 
         public CadastrarFornecedorUseCaseValidationTests()
         {
             cadastrarFornecedorUseCase = Substitute.For<ICadastrarFornecedorUseCase>();
             fornecedorRepository = Substitute.For<IFornecedorRepository>();
+            service = Substitute.For<IApiBrasilService>();
             notificationContext = new NotificationContext();
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -34,14 +38,14 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
             });
             mapper = mappingConfig.CreateMapper();
             cadastrarFornecedorUseCaseValidation = new CadastrarFornecedorUseCaseValidation(cadastrarFornecedorUseCase,
-                fornecedorRepository, mapper, notificationContext);
+                fornecedorRepository, mapper, notificationContext, service);
         }
 
         [Fact]
         public void QuandoReceberUmaRequisicaoValidaEntaoCadastrarOFornecedor()
         {
             var id = Guid.NewGuid();
-            var command = CommandFactory.GerarCadastrarFornecedorCommandValido();
+            var command = new Faker<CadastrarFornecedorCommand>().RuleFor(x => x.Cnpj, x => "47419051000116");
 
             cadastrarFornecedorUseCase.ExecuteAsync(command).Returns(new CadastrarFornecedorCommandResponse(id));
             fornecedorRepository.ExistsAsync(Arg.Any<String>()).ReturnsForAnyArgs(false);
@@ -56,7 +60,7 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         public void QuandoReceberUmaRequisicaoValidaDeUmFornecedorJaCadastradoThrowAlreadyRegisteredException()
         {
             var id = Guid.NewGuid();
-            var command = CommandFactory.GerarCadastrarFornecedorCommandValido();
+            var command = new Faker<CadastrarFornecedorCommand>().RuleFor(x => x.Cnpj, x => "47419051000116").Generate();
 
             cadastrarFornecedorUseCase.ExecuteAsync(command).Returns(new CadastrarFornecedorCommandResponse(id));
             fornecedorRepository.ExistsAsync(command.Cnpj).Returns(true);
@@ -71,14 +75,13 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         public void QuandoReceberUmaRequisicaoInvalidaValidaEntaoCadastrarOFornecedor()
         {
             var id = Guid.NewGuid();
-            var command = CommandFactory.GerarCadastrarFornecedorCommandInValido();
+            var command = new Faker<CadastrarFornecedorCommand>().RuleFor(x => x.Cnpj, x => "12154512");
 
             var retorno = cadastrarFornecedorUseCaseValidation.ExecuteAsync(command).Result;
 
             cadastrarFornecedorUseCase.DidNotReceive().ExecuteAsync(command);
             fornecedorRepository.DidNotReceive().ExistsAsync(Arg.Any<string>());
             Assert.Null(retorno);
-            Assert.NotNull(notificationContext);
         }
     }
 }

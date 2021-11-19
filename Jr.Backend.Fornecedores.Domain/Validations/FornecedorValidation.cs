@@ -17,11 +17,6 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
                 .CnpjValido()
                 .WithMessage("Cnpj deve ser informado ou é Inválido");
 
-            RuleFor(p => p.Cnae)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Cnae deve ser informado");
-
             RuleFor(p => p.AceiteTermosDeUso)
                 .NotNull()
                 .Must(ValorDeveSerTrue)
@@ -40,7 +35,7 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("Razão Social ou Nome de Contato deve ser informado");
-            RuleFor(p => p.Telefone)
+            RuleForEach(p => p.Telefones)
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("Telefone deve ser informado");

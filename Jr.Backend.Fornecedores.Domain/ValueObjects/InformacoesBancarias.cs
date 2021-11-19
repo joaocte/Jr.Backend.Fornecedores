@@ -1,11 +1,13 @@
 ﻿using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
 using Jr.Backend.Libs.Domain.Abstractions.ValueObject;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
     public class InformacoesBancarias : GenericValueObject
     {
+        [JsonConstructor]
         public InformacoesBancarias(string banco, string agencia, string conta, TipoConta tipoConta)
         {
             Banco = banco;

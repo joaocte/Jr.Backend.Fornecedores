@@ -22,10 +22,10 @@ namespace Jr.Backend.Fornecedores.Domain.Validations
                 .NotNull()
                 .WithMessage("Cidade deve ser informado");
 
-            RuleFor(p => p.Estado)
+            RuleFor(p => p.Uf)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage("Estado deve ser informado");
+                .WithMessage("Uf deve ser informado");
 
             RuleFor(p => p.Logradouro)
                 .NotEmpty()

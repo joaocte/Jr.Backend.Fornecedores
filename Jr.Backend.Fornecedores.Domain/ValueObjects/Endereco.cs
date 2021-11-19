@@ -1,19 +1,24 @@
-﻿namespace Jr.Backend.Fornecedores.Domain.ValueObjects
+﻿using System.Text.Json.Serialization;
+
+namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
     /// <summary>
     /// View Object Endereco
     /// </summary>
     public class Endereco
     {
-        public Endereco(string bairro, string cep, string cidade, string complemento, string estado, string logradouro, string numero)
+        [JsonConstructor]
+        public Endereco(string bairro, string cep, string cidade, string complemento, string descricaoTipoLogradouro, string uf, string logradouro, string numero, int codigoMunicipio)
         {
             Bairro = bairro;
             Cep = cep;
             Cidade = cidade;
             Complemento = complemento;
-            Estado = estado;
+            DescricaoTipoLogradouro = descricaoTipoLogradouro;
+            Uf = uf;
             Logradouro = logradouro;
             Numero = numero;
+            CodigoMunicipio = codigoMunicipio;
         }
 
         /// <summary>
@@ -31,15 +36,19 @@
         /// </summary>
         public string Cidade { get; private set; }
 
+        public int CodigoMunicipio { get; private set; }
+
         /// <summary>
         /// <see cref="Complemento"/>
         /// </summary>
         public string Complemento { get; private set; }
 
+        public string DescricaoTipoLogradouro { get; private set; }
+
         /// <summary>
-        /// <see cref="Estado"/>
+        /// <see cref="Uf"/>
         /// </summary>
-        public string Estado { get; private set; }
+        public string Uf { get; private set; }
 
         /// <summary>
         /// <see cref="Logradouro"/>

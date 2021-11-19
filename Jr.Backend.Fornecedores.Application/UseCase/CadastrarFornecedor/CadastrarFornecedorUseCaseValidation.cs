@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Jr.Backend.Fornecedores.Domain;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
+using Jr.Backend.Fornecedores.Infrastructure.Services.Interface;
 using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
 using Jr.Backend.Libs.Domain.Abstractions.Notifications;
 using System.Threading;
@@ -16,31 +16,36 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
         private readonly IFornecedorRepository fornecedorRepository;
         private readonly IMapper mapper;
         private readonly INotificationContext notificationContext;
+        private readonly IApiBrasilService service;
 
-        public CadastrarFornecedorUseCaseValidation(ICadastrarFornecedorUseCase cadastrarFornecedorUseCase, IFornecedorRepository fornecedorRepository, IMapper mapper, INotificationContext notificationContext)
+        public CadastrarFornecedorUseCaseValidation(ICadastrarFornecedorUseCase cadastrarFornecedorUseCase, IFornecedorRepository fornecedorRepository, IMapper mapper, INotificationContext notificationContext, IApiBrasilService service)
         {
             this.cadastrarFornecedorUseCase = cadastrarFornecedorUseCase;
             this.fornecedorRepository = fornecedorRepository;
             this.mapper = mapper;
             this.notificationContext = notificationContext;
+            this.service = service;
         }
 
         public async Task<CadastrarFornecedorCommandResponse> ExecuteAsync(CadastrarFornecedorCommand command,
             CancellationToken cancellationToken = default)
         {
-            var fornecedorDomain = mapper.Map<Fornecedor>(command);
+            var domainFornecedor = await service.ObterInformacoesDaEmpresaPorCnpj(command.Cnpj);
 
-            if (fornecedorDomain.Invalid)
+            if (domainFornecedor is null)
+                throw new NotFoundException("CPF Não cadastrado na base da receita federal");
+
+            domainFornecedor.AdicionarInformacoesCommand(command);
+            if (domainFornecedor.Invalid)
             {
-                notificationContext.AddNotifications(fornecedorDomain.ValidationResult);
+                notificationContext.AddNotifications(domainFornecedor.ValidationResult);
                 return default;
             }
-
             var fornecedorJaCadastrado =
-                await fornecedorRepository.ExistsAsync(fornecedorDomain.Cnpj, cancellationToken);
+                await fornecedorRepository.ExistsAsync(command.Cnpj, cancellationToken);
 
             if (fornecedorJaCadastrado)
-                throw new AlreadyRegisteredException($"Fornecedor {fornecedorDomain.Cnpj} já Cadastrado");
+                throw new AlreadyRegisteredException($"Fornecedor {command.Cnpj} já Cadastrado");
 
             return await cadastrarFornecedorUseCase.ExecuteAsync(command, cancellationToken);
         }

@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using AutoBogus;
+using AutoMapper;
 using Jr.Backend.Fornecedores.Application.AutoMapper;
 using Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
-using Jr.Backend.Fornecedores.Tests.TestObjects;
 using Jr.Backend.Libs.Domain.Abstractions.Interfaces.Repository;
 using Jr.Backend.Message.Events.Fornecedor.Events;
 using MassTransit;
@@ -42,7 +42,8 @@ namespace Jr.Backend.Fornecedores.Tests.Application.UseCase
         {
             var id = Guid.NewGuid();
             var dataCadastro = DateTime.Now.AddDays(-3);
-            AtualizarFornecedorCommand command = CommandFactory.GerarAtualizarFornecedorCommandValido(id, dataCadastro);
+
+            AtualizarFornecedorCommand command = new AutoFaker<AtualizarFornecedorCommand>().RuleFor(x => x.Cnpj, x => "47419051000116").Generate();
 
             var response = atualizarFornecedorUseCase.ExecuteAsync(command).Result;
 
