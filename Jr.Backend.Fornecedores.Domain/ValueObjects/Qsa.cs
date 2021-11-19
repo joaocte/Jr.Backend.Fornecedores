@@ -1,11 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
     public class Qsa
     {
         [JsonConstructor]
-        public Qsa(int identificadorDeSocio, string nomeSocio, string cnpjCpfDoSocio, int codigoQualificacaoSocio, int percentualCapitalSocial, string dataEntradaSociedade, object cpfRepresentanteLegal, object nomeRepresentanteLegal, object codigoQualificacaoRepresentanteLegal)
+        public Qsa(int identificadorDeSocio, string nomeSocio, string cnpjCpfDoSocio, int codigoQualificacaoSocio, int percentualCapitalSocial, DateTime? dataEntradaSociedade, string cpfRepresentanteLegal, string nomeRepresentanteLegal, string codigoQualificacaoRepresentanteLegal)
         {
             IdentificadorDeSocio = identificadorDeSocio;
             NomeSocio = nomeSocio;
@@ -26,14 +27,14 @@ namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 
         public int CodigoQualificacaoSocio { get; private set; }
 
-        public int PercentualCapitalSocial { get; private set; }
+        public decimal PercentualCapitalSocial { get; private set; }
 
-        public string DataEntradaSociedade { get; private set; }
+        public DateTime? DataEntradaSociedade { get; private set; }
 
-        public object CpfRepresentanteLegal { get; private set; }
+        public string CpfRepresentanteLegal { get; private set; }
 
-        public object NomeRepresentanteLegal { get; private set; }
+        public string NomeRepresentanteLegal { get; private set; }
 
-        public object CodigoQualificacaoRepresentanteLegal { get; private set; }
+        public string CodigoQualificacaoRepresentanteLegal { get; private set; }
     }
 }

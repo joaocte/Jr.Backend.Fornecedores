@@ -30,6 +30,12 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
         public async Task<CadastrarFornecedorCommandResponse> ExecuteAsync(CadastrarFornecedorCommand command,
             CancellationToken cancellationToken = default)
         {
+            var fornecedorJaCadastrado =
+                await fornecedorRepository.ExistsAsync(command.Cnpj, cancellationToken);
+
+            if (fornecedorJaCadastrado)
+                throw new AlreadyRegisteredException($"Fornecedor {command.Cnpj} já Cadastrado");
+
             var domainFornecedor = await service.ObterInformacoesDaEmpresaPorCnpj(command.Cnpj);
 
             if (domainFornecedor is null)
@@ -41,11 +47,6 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.CadastrarFornecedor
                 notificationContext.AddNotifications(domainFornecedor.ValidationResult);
                 return default;
             }
-            var fornecedorJaCadastrado =
-                await fornecedorRepository.ExistsAsync(command.Cnpj, cancellationToken);
-
-            if (fornecedorJaCadastrado)
-                throw new AlreadyRegisteredException($"Fornecedor {command.Cnpj} já Cadastrado");
 
             return await cadastrarFornecedorUseCase.ExecuteAsync(command, cancellationToken);
         }

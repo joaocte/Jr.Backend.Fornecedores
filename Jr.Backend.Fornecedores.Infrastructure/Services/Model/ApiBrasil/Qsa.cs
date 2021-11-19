@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace Jr.Backend.Fornecedores.Infrastructure.Services.Model.ApiBrasil
 {
@@ -20,15 +21,15 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Services.Model.ApiBrasil
         public int PercentualCapitalSocial { get; set; }
 
         [JsonProperty("data_entrada_sociedade")]
-        public string DataEntradaSociedade { get; set; }
+        public DateTime DataEntradaSociedade { get; set; }
 
         [JsonProperty("cpf_representante_legal")]
-        public object CpfRepresentanteLegal { get; set; }
+        public string CpfRepresentanteLegal { get; set; }
 
         [JsonProperty("nome_representante_legal")]
-        public object NomeRepresentanteLegal { get; set; }
+        public string NomeRepresentanteLegal { get; set; }
 
         [JsonProperty("codigo_qualificacao_representante_legal")]
-        public object CodigoQualificacaoRepresentanteLegal { get; set; }
+        public string CodigoQualificacaoRepresentanteLegal { get; set; }
     }
 }

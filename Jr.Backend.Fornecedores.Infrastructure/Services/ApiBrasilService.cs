@@ -61,7 +61,7 @@ namespace Jr.Backend.Fornecedores.Infrastructure.Services
                     response.CodigoMunicipio)
             };
 
-            var qsas = response.Qsa.Select(x => new Domain.ValueObjects.Qsa(x.IdentificadorDeSocio, x.NomeSocio,
+            var qsas = response.Qsa?.Select(x => new Domain.ValueObjects.Qsa(x.IdentificadorDeSocio, x.NomeSocio,
                 x.CnpjCpfDoSocio, x.CodigoQualificacaoSocio, x.PercentualCapitalSocial, x.DataEntradaSociedade,
                 x.CpfRepresentanteLegal, x.NomeRepresentanteLegal, x.CodigoQualificacaoRepresentanteLegal)).ToList();
 

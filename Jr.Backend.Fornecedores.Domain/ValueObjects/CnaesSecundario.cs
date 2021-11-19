@@ -11,6 +11,10 @@ namespace Jr.Backend.Fornecedores.Domain.ValueObjects
             Descricao = descricao;
         }
 
+        protected CnaesSecundario()
+        {
+        }
+
         public int Codigo { get; private set; }
 
         public string Descricao { get; private set; }
