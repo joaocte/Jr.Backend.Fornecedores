@@ -2,6 +2,7 @@
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Domain.Querys.Request;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ namespace Jr.Backend.Fornecedor.Api.Controllers.V1
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
+    [Authorize]
     public class FornecedorController : ControllerBase
     {
         [HttpGet]
