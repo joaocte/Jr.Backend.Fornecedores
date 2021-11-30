@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Jror.Backend.Libs.Domain.Abstractions.ValueObject;
+using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
-    public class Qsa
+    public class Qsa : ValueObject
     {
         [JsonConstructor]
         public Qsa(int identificadorDeSocio, string nomeSocio, string cnpjCpfDoSocio, int codigoQualificacaoSocio, int percentualCapitalSocial, DateTime? dataEntradaSociedade, string cpfRepresentanteLegal, string nomeRepresentanteLegal, string codigoQualificacaoRepresentanteLegal)
@@ -36,5 +38,18 @@ namespace Jr.Backend.Fornecedores.Domain.ValueObjects
         public string NomeRepresentanteLegal { get; private set; }
 
         public string CodigoQualificacaoRepresentanteLegal { get; private set; }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return IdentificadorDeSocio;
+            yield return NomeSocio;
+            yield return CnpjCpfDoSocio;
+            yield return CodigoQualificacaoRepresentanteLegal;
+            yield return CodigoQualificacaoSocio;
+            yield return PercentualCapitalSocial;
+            yield return DataEntradaSociedade;
+            yield return CpfRepresentanteLegal;
+            yield return NomeRepresentanteLegal;
+        }
     }
 }

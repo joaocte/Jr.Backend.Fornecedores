@@ -6,9 +6,9 @@ using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Infrastructure.Repository.MongoDb;
 using Jr.Backend.Fornecedores.Infrastructure.Services;
 using Jr.Backend.Fornecedores.Infrastructure.Services.Interface;
-using Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions;
-using Jr.Backend.Libs.Infrastructure.MongoDB.Abstractions.Interfaces;
-using Jr.Backend.Libs.Infrastructure.MongoDB.DependencyInjection;
+using Jror.Backend.Libs.Infrastructure.MongoDB.Abstractions;
+using Jror.Backend.Libs.Infrastructure.MongoDB.Abstractions.Interfaces;
+using Jror.Backend.Libs.Infrastructure.MongoDB.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Jr.Backend.Fornecedores.Infrastructure.DependencyInjection
@@ -17,12 +17,12 @@ namespace Jr.Backend.Fornecedores.Infrastructure.DependencyInjection
     {
         public static void AddServiceDependencyInfrastructure(this IServiceCollection services)
         {
-            services.AddServiceDependencyJrInfrastructureMongoDb(ConnectionType.DirectConnection);
+            services.AddServiceDependencyJrorInfrastructureMongoDb(ConnectionType.DirectConnection);
 
             services.AddScoped<IFornecedorRepository>(p =>
             {
                 var mongoContext = p.GetService<IMongoContext>();
-                return new FornecedorRepository(mongoContext, typeof(Fornecedor).Name);
+                return new FornecedorRepository(mongoContext, nameof(Fornecedor));
             });
             services.AddScoped<IFlurlClientFactory, PerBaseUrlFlurlClientFactory>();
             services.AddScoped<IApiBrasilGatewayClient, ApiBrasilGatewayClient>();

@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿using AspNetCore.IQueryable.Extensions;
+using AutoMapper;
 using Jr.Backend.Fornecedores.Domain;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
-using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
-using Jr.Backend.Libs.Extensions;
+using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
 using ServiceStack;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,8 +2,8 @@
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
 using Jr.Backend.Fornecedores.Infrastructure.Services.Interface;
-using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
-using Jr.Backend.Libs.Domain.Abstractions.Notifications;
+using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
+using Jror.Backend.Libs.Domain.Abstractions.Notifications;
 using System.Threading;
 using System.Threading.Tasks;
 

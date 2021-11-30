@@ -3,7 +3,7 @@ using Jr.Backend.Fornecedores.Domain.Validations;
 using Jr.Backend.Fornecedores.Domain.ValueObjects;
 using Jr.Backend.Fornecedores.Domain.ValueObjects.Enums;
 using Jr.Backend.Libs.Domain.Abstractions;
-using Jr.Backend.Libs.Extensions;
+using Jror.Backend.Libs.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;

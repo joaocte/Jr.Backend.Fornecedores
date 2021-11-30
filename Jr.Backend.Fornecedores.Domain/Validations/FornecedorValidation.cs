@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Jr.Backend.Libs.Domain.Core.Validations;
+using Jror.Backend.Libs.Domain.Core.Validations;
 
 namespace Jr.Backend.Fornecedores.Domain.Validations
 {

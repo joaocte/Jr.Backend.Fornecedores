@@ -3,8 +3,8 @@ using Jr.Backend.Fornecedores.Domain;
 using Jr.Backend.Fornecedores.Domain.Commands.Request;
 using Jr.Backend.Fornecedores.Domain.Commands.Response;
 using Jr.Backend.Fornecedores.Infrastructure.Interfaces;
-using Jr.Backend.Libs.Domain.Abstractions.Exceptions;
-using Jr.Backend.Libs.Domain.Abstractions.Notifications;
+using Jror.Backend.Libs.Domain.Abstractions.Exceptions;
+using Jror.Backend.Libs.Domain.Abstractions.Notifications;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,7 +37,7 @@ namespace Jr.Backend.Fornecedores.Application.UseCase.AtualizarFornecedor
                 notificationContext.AddNotifications(fornecedorDomain.ValidationResult);
                 return default;
             }
-            var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(fornecedor.Cnpj)
+            var fornecedorJaCadastrado = await fornecedorRepository.ExistsAsync(x => x.Cnpj == fornecedor.Cnpj)
                                          && await fornecedorRepository.ExistsAsync(command.Id);
             if (!fornecedorJaCadastrado)
                 throw new NotFoundException(

@@ -1,11 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using Jror.Backend.Libs.Domain.Abstractions.ValueObject;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Jr.Backend.Fornecedores.Domain.ValueObjects
 {
     /// <summary>
     /// View Object Endereco
     /// </summary>
-    public class Endereco
+    public class Endereco : ValueObject
     {
         [JsonConstructor]
         public Endereco(string bairro, string cep, string cidade, string complemento, string descricaoTipoLogradouro, string uf, string logradouro, string numero, int codigoMunicipio)
@@ -59,5 +61,18 @@ namespace Jr.Backend.Fornecedores.Domain.ValueObjects
         /// <see cref="Numero"/>
         /// </summary>
         public string Numero { get; private set; }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Bairro;
+            yield return Cidade;
+            yield return Cep;
+            yield return CodigoMunicipio;
+            yield return Complemento;
+            yield return DescricaoTipoLogradouro;
+            yield return Uf;
+            yield return Logradouro;
+            yield return Numero;
+        }
     }
 }
