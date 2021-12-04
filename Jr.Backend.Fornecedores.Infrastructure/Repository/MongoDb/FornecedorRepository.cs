@@ -5,7 +5,7 @@ using Jror.Backend.Libs.Infrastructure.MongoDB.Repository;
 
 namespace Jr.Backend.Fornecedores.Infrastructure.Repository.MongoDb
 {
-    public class FornecedorRepository : MongoRepository<Fornecedor>, IFornecedorRepository
+    public class FornecedorRepository : Repository<Fornecedor>, IFornecedorRepository
     {
         public FornecedorRepository(IMongoContext context, string collectionName) : base(context, collectionName)
         {
