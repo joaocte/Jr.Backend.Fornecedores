@@ -55,8 +55,6 @@ namespace Jr.Backend.Fornecedores.Application.DependencyInjection
                     }
                 ));
             });
-
-            services.AddMassTransitHostedService();
         }
     }
 }
